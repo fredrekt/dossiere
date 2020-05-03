@@ -12,7 +12,7 @@ class BlogPage extends Component{
                 bcrumbs_header="My Blogs"
                 bcrumbs_current="Blogs"
               />
-        <hr style={{'margin-top':'-2%'}} className="mb-4" width="10%"/>
+        <hr style={{ marginTop:'-2%' }} className="mb-4" width="10%"/>
         <p className="text-center w-responsive mx-auto mb-5">
           Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat

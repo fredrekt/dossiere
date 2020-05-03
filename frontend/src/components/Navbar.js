@@ -45,7 +45,7 @@ class FullPageIntroWithFixedTransparentNavbar extends Component {
                     <MDBNavLink to="/">Home</MDBNavLink>
                   </MDBNavItem> */}
                   <MDBNavItem className="nav-item" onClick={()=>console.log("clicked blog")}>
-                    <MDBNavLink to="/blog">Blog</MDBNavLink>
+                    <MDBNavLink to="/blog-gridview">Blog</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem className="nav-item" onClick={()=>console.log("clicked about")} >
                     <MDBNavLink onClick={this.three} to="#">About</MDBNavLink>

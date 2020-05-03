@@ -11,8 +11,16 @@ import cup from '../img/cup.jpg'
 const BlogGridView = () => {
     return (
         <>
-        <MDBContainer>
-            <MDBRow style={{ marginTop: "10%" }}>
+        <MDBContainer style={{ marginTop: "10%" }}>
+            <div className="blog-grid-title mb-4">
+                <h2 className="h2-responsive font-weight-bold">
+                    Blog Articles
+                </h2>
+                <p style={{ fontWeight: "400" }}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel dui lectus
+                </p>
+            </div>
+            <MDBRow>
                 <MDBCol md="6">
                     <MDBView className="mod-card rounded z-depth-2 mb-lg-0 mb-4" hover waves>
                         <div className="blog-grid-overlay position-relative">
@@ -35,7 +43,7 @@ const BlogGridView = () => {
                                 </div>
                             </div>   
                         </div>
-                        <a href="/">
+                        <a href="/blog/4">
                             <MDBMask className="flex-center" overlay="black-strong">
                             <div className="white-text"><b>Read more about article name and description</b></div>
                             </MDBMask>

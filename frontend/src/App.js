@@ -22,6 +22,7 @@ import BlogGridView from './components/BlogGridView';
 import BlogColumnView from './components/BlogColumnView';
 import CombinedGridView from './components/CombinedGridView';
 import CustomBlog from './components/CustomBlog';
+import MissingPage from './components/MissingPage'
 
 function App() {
   return (
@@ -36,19 +37,19 @@ function App() {
         <Route exact path="/blog/3" component={BlogPageCarousel}/>
         {/* Article Blog */}
         <Route exact path="/blog/4" component={CustomBlog}/>
-        <MDBContainer>
+        {/* 404 Page/ Page Not Found */}
+        {/* <Route path="/*" component={MissingPage}/> */}
+        <MDBContainer style={{ marginBottom: "10%" }}>
           <Route exact path="/blog" component={BlogPage}/>
           <Route exact path="/blog-gridview" component={BlogGridView}/>
           <Route exact path="/blog-columnview" component={BlogColumnView}/>
-          <Route exact path="/blog-allviews" component={CombinedGridView}/>
+          <Route exact path="/blog-allviews" component={CombinedGridView}/>     
         </MDBContainer>
         {/* Blog Main Page */}
         <Route exact path="/lightbox" component={LightboxPage}/>
         {/* <Footer/> */}
         {/* <Route exact="/" component={SplitBlogPage}/> */}
-        <Route exact path="/admin/user" component={SideNav}/>
-       
-       
+        <Route exact path="/admin/user" component={SideNav}/>       
      
         <Route exact path="/comments" component={Comments}/>
         <Route exact path="/login" component={Login}/>
