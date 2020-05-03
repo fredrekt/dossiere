@@ -170,6 +170,9 @@
 /*
 ============== Footer Component Starts ============ 
 */
+.footer-shadow{
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
 .subscribe-container{
 
   width:100%;
@@ -251,10 +254,13 @@
 }
 
 /*
-============== GridView Blog Component Ends ============ 
+============== GridView Blog Component Starts ============ 
 */
 .blog-grid-wrapper{
 
+}
+.blog-grid-title{
+  width: 40%;
 }
 .blog-grid-container{
   top: 0px;
@@ -363,6 +369,44 @@
 }
 /* Breadcrumb Component Ends */
 
+/*
+=========== 404 Page Component ==========
+*/
+
+/* 404 Component Starts */
+.img-404{
+  width: 100%;
+  height: 100%;
+}
+.h1-404{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold; 
+  font-size: 20px;
+}
+.container-404-txt{
+  margin-top: 15%;
+  margin-bottom: 15%;
+}
+.txt-404{
+  font-family: 'Montserrat', sans-serif;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #ff4444;
+  color:white;
+  font-size: 170px;
+}
+.center-404{
+  text-align: center;
+}
+.txt-sub-1{
+  font-weight: 100;
+  font-size: 20px;
+}
+.txt-sub-404{
+  font-weight: 100;
+  font-size: 15px;
+  color:grey;
+}
+/* 404 Component Ends */
 /* Comments Component Starts */
 .comment-avatar img{
   width: 50px;
@@ -410,3 +454,24 @@
   background-color: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5);
 }
+
+/* ================ Create Post Starts =========== */
+.create-post-container{
+  margin-top: -6%;
+  margin-left: 20%;
+  overflow-y: scroll;
+  height: 650px;
+}
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+/* [type=radio] + img {
+  cursor: pointer;
+}
+[type=radio]:checked + img {
+  outline: 2px solid #f00;
+} */
+/* ================ Create Post Ends =========== */

@@ -4,8 +4,8 @@ import { MDBCol, MDBContainer, MDBRow,
 import Input from './Input'
 
 const FooterPage = () => {
-  return (
-    <MDBFooter color="grey lighten-4" className="font-small pt-4 mt-4 black-text">
+  return(
+    <MDBFooter color='white' className="footer-shadow font-small pt-4 mt-4 black-text">
       <MDBContainer fluid className="text-center text-md-left">
         <MDBRow>
           <MDBCol md="6">
@@ -70,7 +70,7 @@ const FooterPage = () => {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-      <div className="footer-copyright py-3">
+      <div style={{ backgroundColor: "#bdbdbd" }} className="footer-copyright py-3">
         <MDBContainer fluid>
           <MDBBox display="flex" flex="row">
           &copy; {new Date().getFullYear()} Copyright: <a href="https://www.mdbootstrap.com"> MDBootstrap.com </a>
