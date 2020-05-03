@@ -5,7 +5,7 @@ import { MDBContainer, MDBRow, MDBCol,
 
 const CreatePost = () => {
     return (
-        <MDBContainer>
+        <MDBContainer className="create-post-container">
             <h2>
                 Select a preview    
             </h2> 
@@ -14,11 +14,12 @@ const CreatePost = () => {
             </p>
             <MDBRow>
                 <MDBCol md="3">
-                    <a rel="noopener noreferrer" target="_blank" href="https://www.npmjs.com/package/bs-stepper">
+                    <a href="#!">
+                        <input type="radio"/>
                         <MDBCard className="card-hover">
                             <MDBCardBody>
                                 <MDBCardText>
-                                    Preview One
+                                    Priview One
                                 </MDBCardText>
                             </MDBCardBody>
                         </MDBCard>
@@ -62,13 +63,46 @@ const CreatePost = () => {
             </MDBRow>
             <MDBRow>
                 <MDBCol md="9">
-                    <MDBInput type="textarea" label="Material textarea" rows="10" />
+                    <MDBInput type="textarea" label="Write your article content" rows="10" />
                 </MDBCol>
             </MDBRow>
             {/* <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="defaultUnchecked"/>
                 <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
             </div> */}
+            <div className="mt-5">
+                <h2>
+                    Select how many sections you want
+                </h2>
+                <p className="grey-text">
+                    Choose below to add to your sections
+                </p>
+            </div>
+            <MDBRow>
+                <MDBCol md="6">
+                    <select className="browser-default custom-select">
+                    <option>Choose your option</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                    </select>
+                </MDBCol>
+                <MDBCol md="3">
+                    <MDBBtn size="sm" className="mt-1">
+                        +
+                    </MDBBtn>
+                </MDBCol>
+            </MDBRow>
+            <MDBRow>
+                <MDBCol md="9">
+                    <MDBInput label="Section Title"/>
+                </MDBCol>
+            </MDBRow>
+            <MDBRow>
+                <MDBCol md="9">
+                    <MDBInput type="textarea" label="Write your section content" rows="10" />
+                </MDBCol>
+            </MDBRow>
             <MDBBtn size="md" color="primary">
             <MDBIcon className="mr-1" icon="pencil-alt"/>Publish Article
             </MDBBtn>
