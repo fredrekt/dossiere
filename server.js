@@ -5,6 +5,7 @@ const users = require('./routes/api/users')
 const auth = require('./routes/api/auth')
 const profile = require('./routes/api/profile')
 const posts = require('./routes/api/posts')
+const contact = require('./routes/api/contact')
 //end dir: routes/api
 const app = express()
 //connect to mongodb
@@ -24,7 +25,8 @@ app.use('/api/auth', auth)
 app.use('/api/profile', profile)
 //posts
 app.use('/api/posts', posts)
-
+//contact 
+app.use('/api/contact', contact)
 
 const PORT = process.env.PORT || 5000
 
