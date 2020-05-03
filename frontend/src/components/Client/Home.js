@@ -29,7 +29,7 @@ class Home extends Component{
             <AboutSection
                 portfolioLinkDownload="../../img/pp.jpg"
                 getPortfolioOnclick={()=>console.log("porfolio clicked")}
-                contactOnclick={()=>console.log("contact on click")}
+                contactOnclick={() => scrollToComponent(this.getInTouchSection, { offset: 0, align: 'middle', duration: 1000})}
             />
            </section>
            </MDBAnimation>
