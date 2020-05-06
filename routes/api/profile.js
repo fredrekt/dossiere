@@ -7,8 +7,7 @@ const Profile = require('../../models/Profile')
 
 // use: get profile logged in
 // description
-route.get('/me', auth ,
-    async (req, res) => {
+route.get('/me', auth , async (req, res) => {
     try{
         const profile = await Profile.findOne({ user: req.user.id }).populate(
         'user',
@@ -17,9 +16,10 @@ route.get('/me', auth ,
         if(!profile){
             return res.status(400).json({ msg: 'There is no existing profile for this user' })
         }
+        res.json(profile)
     }
     catch(err){
-        console.log(err)
+        console.error(err.message)
         res.status(500).send('Server Error')
     }
 })
