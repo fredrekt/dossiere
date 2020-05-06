@@ -2,22 +2,46 @@ import React, { useState } from "react";
 import { MDBContainer, MDBRow, 
     MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 import frontdesk from '../../../img/frontdesk-vector.jpg'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { setAlert } from '../../../actions/alert'
+import { login } from '../../../actions/auth'
+import PropTypes from 'prop-types'
+import Spinner from '../../Spinner'
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
 
     const [ formData, setFormData ] = useState({
         email: '',
-        password: ''
+        password: '',
     })
+
+    const [ Btn, setBtn  ] = useState('Login')
+
+    //var submitButton = "Login"
 
     const { email, password } = formData
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
     const onSubmit = async e =>{
-        e.preventDefault();
+        e.preventDefault(); 
+        setBtn(
+            <div className="spinner-border spinner-border-sm" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
+        ) 
+        setTimeout(
+        login( email, password )
+        ,1000)
+        //setBtn('Login')
+        // login( email, password )
         console.log(formData)
+    }
+
+    //Redirect if logged in successful
+    if(isAuthenticated){
+        return <Redirect to='/admin'/>
     }
 
   return (
@@ -59,7 +83,7 @@ const Login = () => {
                             Forgot your password? <Link to="/register">Retrieve here</Link>
                         </div>
                         <div className="text-center">
-                        <MDBBtn type="submit" className="w-100 ml-0">Login</MDBBtn>
+                        <MDBBtn id="btn-id-submit" type="submit" className="w-100 ml-0">{Btn}</MDBBtn>
                         </div>
                     </form>
                 </MDBContainer>
@@ -70,4 +94,14 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propType = {
+    setAlert: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+}
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { login })(Login);
