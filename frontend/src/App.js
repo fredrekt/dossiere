@@ -34,6 +34,7 @@ function App() {
         {/* Book Blog */}
         <Route exact path="/blog/2" component={SplitBlogPage}/>
         {/* Picture Blog */}
+        {/* Selected Blog - Request Params - use url parameter */}
         <Route exact path="/blog/3" component={BlogPageCarousel}/>
         {/* Article Blog */}
         <Route exact path="/blog/4" component={CustomBlog}/>
