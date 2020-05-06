@@ -2,6 +2,7 @@ import React from 'react'
 import { MDBContainer, MDBCard, MDBCardBody, MDBIcon,
     MDBBox, MDBCardText } from "mdbreact"; 
 import Comments from './Comments'
+import pp from '../img/fred.jpg'
 
 const BlogPageCarousel = () => {
     return (
@@ -11,17 +12,25 @@ const BlogPageCarousel = () => {
                 bcrumbs_header="My Blogs"
                 bcrumbs_current="Blogs"
                 /> */}
+            <div className="blog-carousel-container p-5">
+                <div className="blog-carousel-title p-2">
+                    How hard to be a Full Stack Developer?
+                </div>
+                <div className="blog-carousel-date-container p-2">
+                    <div className="blog-carousel-date">
+                        AUG 18, 2020
+                    </div>
+                </div>
+            </div>
             <div className="container mt-5">
             <section className="text-center">
-                <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(5).jpg" className="img-fluid z-depth-1 rounded mb-4"
+                <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(5).jpg" className="img-fluid z-depth-2 rounded mb-4 hoverable"
                 alt=""/>
-
                 <p className="mb-4">
                 <strong>
-                    Posted 21.10.2019 by
                     <a href="#imgcarousel" className="indigo-text mx-2">
-                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg" alt="img" className="rounded z-depth-1"
-                        style={{"width": "31px", "height": "31px"}}/>
+                    <img src={pp} alt="img" className="z-depth-2"
+                        style={{"width": "40px", "height": "40x","border-radius":"50px"}}/>
                     <strong className="ml-1">Fred Garingo</strong>
                     </a>
                 </strong>
@@ -49,7 +58,7 @@ const BlogPageCarousel = () => {
                 </a>
                 </div>
 
-                <MDBContainer style={{'margin-top':'5%'}}>
+                <MDBContainer style={{marginTop:'5%', marginBottom:'5%'}}>
                 <MDBCard>
                   <MDBCardBody>
                     <MDBCardText className="p-4">
@@ -69,9 +78,11 @@ const BlogPageCarousel = () => {
                    </MDBCardBody>
                   <MDBBox className="p-4" display="flex" justifyContent="center">
                     <MDBContainer>
-                      SAT 29 AUGUST 20:24
+                        <div className="blog-carousel-update">
+                            UPDATED 4:09 PM
+                        </div>
                     </MDBContainer>
-                    <MDBIcon className="mr-3" size="2x" icon="ellipsis-h" />
+                    <MDBIcon className="blog-carousel-options mr-3" onClick={()=>alert("Clicked Options")} size="2x" icon="ellipsis-h" />
                   </MDBBox>
                 </MDBCard>
               </MDBContainer>

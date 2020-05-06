@@ -252,6 +252,41 @@
   font-size: 25px;
   font-weight: 400;
 }
+/* 
+============== Single Blog Component Ends ============  
+*/
+/* 
+============== Blog Carousel Component Starts ============  
+*/
+.blog-carousel-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.blog-carousel-title{
+  font-size: 40px;
+  width: 50%;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.blog-carousel-date{
+  font-size: small;
+  color: grey;
+}
+.blog-carousel-update{
+  color: darkgrey;
+  font-size: small;
+}
+.blog-carousel-options{
+  cursor: pointer;
+}
+/* 
+============== Blog Carousel Component Ends ============  
+*/
+
+
 
 /*
 ============== GridView Blog Component Starts ============ 
