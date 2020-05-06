@@ -2,9 +2,28 @@ import React, { Component } from 'react'
 import {  MDBRow, MDBCol, MDBMask,
      MDBIcon, MDBView, MDBBtn } from "mdbreact";
 import Breadcrumbs from './Breadcrumbs'
-
+import axios from 'axios'
+import BlogMain from './BlogMain';
 class BlogPage extends Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      posts: []
+    }
+  }
+    async componentDidMount(){
+      try {
+        const res = await fetch('api/posts/all-posts')
+        const json = await res.json()
+        this.setState({posts:json})
+        console.log(this.state.posts)
+      } 
+      catch (error) {
+        console.log(error)  
+      }   
+    }
     render(){
+      const posts = this.state.posts
         return(
             <>
             <Breadcrumbs
@@ -19,47 +38,7 @@ class BlogPage extends Component{
           cupidatat non proident, sunt in culpa qui officia deserunt mollit
           anim id est laborum.
         </p>
-        <MDBRow>
-          <MDBCol lg="5">
-            <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
-              <img
-                className="img-fluid"
-                src="https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg"
-                alt=""
-              />
-              <a href="#!">
-                <MDBMask overlay="white-slight" />
-              </a>
-            </MDBView>
-          </MDBCol>
-          <MDBCol lg="7">
-            <a href="#!" className="green-text">
-              <h6 className="font-weight-bold mb-3">
-                <MDBIcon icon="utensils" className="pr-2" />
-                Food
-              </h6>
-            </a>
-            <h3 className="font-weight-bold mb-3 p-0">
-              <strong>Title of the news</strong>
-            </h3>
-            <p>
-              Nam libero tempore, cum soluta nobis est eligendi optio cumque
-              nihil impedit quo minus id quod maxime placeat facere possimus,
-              omnis voluptas assumenda est, omnis dolor repellendus et aut
-              officiis debitis.
-            </p>
-            <p>
-              by &nbsp;
-              <a href="#!">
-                <strong>Carine Fox</strong>
-              </a>
-              , 19/08/2018
-            </p>
-            <MDBBtn href="/blog/1" color="success" size="md" className="waves-light ">
-              Read more
-            </MDBBtn>
-          </MDBCol>
-        </MDBRow>
+        <BlogMain data={posts}/>
         <hr className="my-5" />
         <MDBRow>
           <MDBCol lg="7">
