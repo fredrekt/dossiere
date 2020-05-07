@@ -457,7 +457,11 @@
 }
 /* Comments Component Ends */
 
-/* Profile Component Ends */
+/* Profile Component Starts */
+.profile-avatar img{
+  width: 60px;
+  border-radius: 60px;
+}
 .card-hover{
 
 }
@@ -486,11 +490,32 @@
   background-color: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5);
 }
+/* ================ Dashboard Component Starts =========== */
+.admin-title-container{
+  display: flex;
+  margin-bottom: 5%;
+  margin-left: 15px;
+}
+.admin-title-card{
+  cursor: pointer;
+  height: 100%;
+  width: 64px;
+}
+.admin-title-content{
+  margin-left: 4%;
+}
+.admin-title{
+  font-size: x-large;
+  font-weight: 900;
+}
+.admin-sub-title{
+  color: grey;
+  font-size: medium;
+}
+/* ================ Dashboard Component Ends =========== */
 
 /* ================ Create Post Starts =========== */
 .create-post-container{
-  margin-top: -6%;
-  margin-left: 20%;
   overflow-y: scroll;
   height: 650px;
 }
