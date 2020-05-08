@@ -33,11 +33,13 @@ export const login = ( email, password ) => async dispatch => {
 
     try {
     const res = await axios.post('/api/auth', body, config)
+
         dispatch({ 
             type: LOGIN_SUCCESS,
             payload: res.data
-        })
-        dispatch(loadUser())
+        });
+
+        dispatch(loadUser());
     } 
     catch (err) {
         const errors = err.response.data.errors
@@ -54,6 +56,6 @@ export const login = ( email, password ) => async dispatch => {
 
 //logout - clear user in redux
 export const logout = () => dispatch =>{
-    dispatch({ type: CLEAR_PROFILE })
-    dispatch({ type: LOGOUT })
+    dispatch({ type: CLEAR_PROFILE });
+    dispatch({ type: LOGOUT });
 }
