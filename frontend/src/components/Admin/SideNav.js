@@ -1,8 +1,8 @@
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-import React from 'react'
+import React, { useEffect } from 'react'
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { MDBIcon, MDBContainer } from 'mdbreact'
 import {BrowserRouter, Route,Switch} from 'react-router-dom'
 import CreatePost from './ManagePosts/CreatePost'
@@ -12,12 +12,22 @@ import PostAnalytics from './ManagePosts/PostAnalytics'
 import ArchivedPosts from './ManagePosts/ArchivedPosts'
 import ContactHelp from './Help/ContactHelp'
 import Profile from './auth/Profile'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { logout } from '../../actions/auth'
+import PrivateRoute from '../routing/PrivateRoute'
 
-const SideNavbar = () =>{
+const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
+
+    //commented redirect - override to use isAuthenticated declared obsolete by (ProtectedRoute)
+    // if(!isAuthenticated){
+    //     return <Redirect to="/login"/>
+    // }
+
     return(
         <BrowserRouter>
         <SideNav 
-        style={{'background-color':'elegant-color', 'height': '100%'}}
+        style={{'background':'elegant-color', 'height': '100%'}}
     onSelect={(selected) => {
         // Add your code here
 
@@ -27,11 +37,11 @@ const SideNavbar = () =>{
     <SideNav.Nav defaultSelected="home">
         <NavItem eventKey="home">
             <NavIcon>
-                <MDBIcon size="1x" icon="home" />
+                <MDBIcon size="1x" icon="th-large" />
             </NavIcon>
             <NavText>
-                <Link to="/home/admin">
-                    Home
+                <Link to="/admin">
+                    Dashboard
                 </Link>
             </NavText>
         </NavItem>
@@ -94,7 +104,7 @@ const SideNavbar = () =>{
                 </Link>
             </NavText>
         </NavItem>
-        <NavItem eventKey="logout">
+        <NavItem onClick={logout} eventKey="logout">
             <NavIcon>
                 <MDBIcon size="1x" icon="sign-out-alt" />
             </NavIcon>
@@ -105,8 +115,8 @@ const SideNavbar = () =>{
     </SideNav.Nav>
 </SideNav>
 <Switch>
-    <MDBContainer style={{ 'margin-top': '2%', 'margin-left':'20%' }}>
-        <Route exact path="/home/admin" component={Dashboard}/>
+    <MDBContainer style={{ marginTop: '-5%', marginLeft:'20%' }}>
+        <PrivateRoute exact path="/admin" component={Dashboard}/>
         <Route exact path="/create-post" component={CreatePost}/>
         <Route exact path="/active-posts" component={ActivePosts}/>
         <Route exact path="/analytics-posts" component={PostAnalytics}/>
@@ -118,4 +128,14 @@ const SideNavbar = () =>{
 </BrowserRouter>
     )
 }
-export default SideNavbar
+
+SideNavbar.propTypes = {
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+})
+
+export default connect(mapStateToProps, { logout })(SideNavbar)
