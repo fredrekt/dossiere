@@ -2,9 +2,19 @@ import React from 'react'
 import { MDBContainer, MDBRow, MDBCol, 
     MDBCard, MDBCardBody, MDBCardText, MDBInput, 
     MDBBtn, MDBIcon } from 'mdbreact'
+import AdminTitle from '../../AdminTitle'
 
 const CreatePost = () => {
+    const adminTitle = [{
+        id: 2,
+        icon: "pencil-alt",
+        className: "mt-2 ml-2",
+        title: "Compose An Article",
+        subTitle: "This is an example definition of what you're gonna do with this type of composing of an article period."
+    }]
     return (
+    <>
+        <AdminTitle adminTitle={adminTitle}/>
         <MDBContainer className="create-post-container">
             <h2>
                 Select a preview    
@@ -107,6 +117,7 @@ const CreatePost = () => {
             <MDBIcon className="mr-1" icon="pencil-alt"/>Publish Article
             </MDBBtn>
         </MDBContainer>
+    </>
     )
 }
 

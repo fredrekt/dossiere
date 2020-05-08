@@ -1,17 +1,19 @@
 import React from "react";
 import {  MDBRow, MDBCol, MDBCardBody, MDBIcon, MDBBtn, MDBView, MDBMask } from "mdbreact";
+import AdminTitle from '../../AdminTitle'
 
 const ProjectsPage = () => {
+  const adminTitle = [{
+    id: 5,
+    title: "Articles, Posts & Blogs Analytics",
+    className: "mt-2 ml-2",
+    icon: "trash-restore",
+    subTitle: "This is an example of All your archived posts & articles are shown below, made by fred."
+  }]
   return (
+    <>
+    <AdminTitle adminTitle={adminTitle}/>
     <section className="text-center my-5">
-        <h2 className="h1-responsive font-weight-bold">
-          Archived Posts & Articles 
-        </h2>
-        <hr width="10%"/>
-        <p className="grey-text w-responsive mx-auto mb-5">
-          All your archived posts & articles are shown below
-        </p>
-
         <MDBRow className="d-flex justify-content-center">
           <MDBCol md="6" xl="5" className="mb-4">
             <MDBView className="overlay rounded z-depth-2" waves>
@@ -131,6 +133,7 @@ const ProjectsPage = () => {
           </MDBCol>
         </MDBRow>
       </section>
+    </>
   );
 }
 

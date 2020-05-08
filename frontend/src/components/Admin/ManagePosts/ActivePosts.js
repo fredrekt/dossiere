@@ -1,20 +1,19 @@
 import React from 'react';
 import { MDBTable, MDBTableBody, MDBTableHead, MDBContainer } from 'mdbreact';
+import AdminTitle from '../../AdminTitle';
 
 const BasicTable = () => {
+  const adminTitle = [{
+    id: 3,
+    title: "Articles, Blogs & Posts",
+    icon: "camera-retro",
+    className: "mt-2 ml-2",
+    subTitle: "This is an example of your overview, made by fred and designed by fred and the components of this project."
+  }]
   return (
+      <>
+        <AdminTitle adminTitle={adminTitle}/>
       <MDBContainer>
-        <h2 className="h1-responsive font-weight-bold text-center">
-          Articles & Posts 
-        </h2>
-        <hr width="10%"/>
-        <p className="grey-text text-center">
-          Overview of your posts & articles are shown below
-        </p>
-
-
-
-
         <div className="container my-5 py-5">
 
 
@@ -137,6 +136,7 @@ const BasicTable = () => {
         </MDBTableBody>
         </MDBTable>
     </MDBContainer>
+    </>
   );
 }
 

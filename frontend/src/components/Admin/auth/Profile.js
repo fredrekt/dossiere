@@ -5,13 +5,16 @@ import { MDBContainer, MDBCard, MDBCardText,
     MDBModalBody, MDBModalFooter, MDBListGroup, MDBListGroupItem,
 } from 'mdbreact'
 import PanelJob from '../../PanelJob'
-
+import AdminTitle from '../../AdminTitle'
+import pp from '../../../img/fred.jpg'
 class Profile extends Component {
-    state = {
-        modal: false,
-        modal2: false
-      }
-      
+    constructor(props){
+        super(props)
+        this.state = {
+            modal: false,
+            modal2: false
+        }
+    }
     toggle = () => {
         this.setState({
         modal: !this.state.modal
@@ -23,19 +26,28 @@ class Profile extends Component {
         modal2: !this.state.modal2
         });
     }
+    
 
     render(){
+        const adminTitle = [{
+            id: 7,
+            title: "Account Information | Own Portfolio",
+            className: "mt-2 ml-2",
+            icon: "user-alt",
+            subTitle: "This is an example of All your archived posts & articles are shown below, made by fred."
+          }]
         return (
             <>
+            <AdminTitle adminTitle={adminTitle}/>
                 <MDBContainer>
-                    <MDBCard>
+                    <MDBCard className="z-depth-4 p-2">
                         <MDBCardBody>
                             <MDBCardText>
                                 <b className="font-size-18">Personal Information</b>
                                 <hr/>
                                 <MDBBox className="p-1" alignItems="center" display="flex" flex="row">
                                         <div className="profile-avatar">
-                                            <MDBIcon size="4x" icon="user-circle" />
+                                            <img src={pp} alt=""/>
                                         </div>
                                         <MDBBox className="p-2" flex="column">
                                             <div className="profile-name">

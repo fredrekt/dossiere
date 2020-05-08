@@ -1,8 +1,18 @@
 import React from 'react'
 import { MDBContainer} from 'mdbreact'
+import AdminTitle from '../../AdminTitle'
 
 const ContactHelp = () => {
+  const adminTitle = [{
+    id: 6,
+    title: "Got a Question?",
+    className: "mt-2 ml-2",
+    icon: "question-circle",
+    subTitle: "This is an example of All your archived posts & articles are shown below, made by fred."
+  }]
     return (
+      <>
+      <AdminTitle adminTitle={adminTitle}/>
         <MDBContainer>
         <div className="container my-5 py-5 z-depth-1">
 
@@ -16,7 +26,7 @@ const ContactHelp = () => {
     {/* <!--Grid column--> */}
     <div className="col-lg-5 col-md-12 mb-0 mb-md-0">
 
-      <h3 className="font-weight-bold">Got A Question?</h3>
+      <h3 className="font-weight-bold">Ask me anything.</h3>
 
       <p className="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
         molestiae
@@ -94,6 +104,7 @@ const ContactHelp = () => {
 
 </div>
         </MDBContainer>
+        </>
     )
 }
 
