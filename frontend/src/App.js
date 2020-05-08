@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Navbar from './components/Navbar'
-import {BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Footer from './components/Footer'
 import BlogPage from './components/BlogPage'
 import SingleBlog from './components/SingleBlog'
@@ -23,13 +23,40 @@ import BlogColumnView from './components/BlogColumnView';
 import CombinedGridView from './components/CombinedGridView';
 import CustomBlog from './components/CustomBlog';
 import MissingPage from './components/MissingPage'
+import Alert from './components/Alert'
+import PrivateRoute from './components/routing/PrivateRoute'
+//Redux
+import { Provider } from 'react-redux'
+import store from './store'
 
-function App() {
+//load user
+import { loadUser } from './actions/auth'
+
+//import setAuthToken function from utils
+import setAuthToken from './utils/setAuthToken'
+import Dashboard from './components/Admin/Dashboard';
+import NavigationBar from './components/NavigationBar';
+//main page 
+import MainComponent from './components/NavigationBar'
+
+// set token - to get accepted
+if(localStorage.token){
+  setAuthToken(localStorage.token)
+}
+
+const App = () => {
+  useEffect(()=>{
+    store.dispatch(loadUser())
+  }, [])
   return (
-    <> 
-      <BrowserRouter>   
-        {/* <Navbar/> */}
-        <Route exact path="/" component={Home}/>
+    <Provider store={store}> 
+      <Router>   
+        <MainComponent/>
+        <Alert/>
+        <>
+        <Route exact path="/mainpage" component={NavigationBar}/>
+        <Route exact path="/login" component={Login}/>
+
         <Route exact path="/blog/1" component={SingleBlog}/>
         {/* Book Blog */}
         <Route exact path="/blog/2" component={SplitBlogPage}/>
@@ -50,16 +77,15 @@ function App() {
         <Route exact path="/lightbox" component={LightboxPage}/>
         {/* <Footer/> */}
         {/* <Route exact="/" component={SplitBlogPage}/> */}
-        <Route exact path="/admin/user" component={SideNav}/>       
-     
+        <PrivateRoute exact path="/admin" component={SideNav}/>            
         <Route exact path="/comments" component={Comments}/>
-        <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
         <Route exact path="/b" component={Breadcrumbs}/>
         <Route exact path="/profile" component={Profile}/>
         <Route exact path="/create-post" component={CreatePost}/>
         <Route exact path="/active-posts" component={ActivePosts}/>
-      </BrowserRouter>
+        </>
+      </Router>
       {/* <MDBContainer>
         <BlogPage/>
       </MDBContainer> */}
@@ -70,7 +96,7 @@ function App() {
       {/* <Dashboard/> */}
       {/* <SplitBlogPage/> */}
       {/* <Login/> */}
-    </>
+    </Provider>
   );
 }
 
