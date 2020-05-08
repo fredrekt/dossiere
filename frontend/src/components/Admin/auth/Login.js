@@ -4,10 +4,8 @@ import { MDBContainer, MDBRow,
 import frontdesk from '../../../img/frontdesk-vector.jpg'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setAlert } from '../../../actions/alert'
 import { login } from '../../../actions/auth'
 import PropTypes from 'prop-types'
-import Spinner from '../../Spinner'
 
 const Login = ({ login, isAuthenticated }) => {
 
@@ -94,8 +92,7 @@ const Login = ({ login, isAuthenticated }) => {
   );
 };
 
-Login.propType = {
-    setAlert: PropTypes.func.isRequired,
+Login.propTypes = {
     login: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
 }
