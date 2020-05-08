@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBRow, 
     MDBCol, MDBBtn, MDBInput } from 'mdbreact';
-import frontdesk from '../../../img/frontdesk-vector.jpg'
+import frontdesk from '../../../img/development.jpg'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login } from '../../../actions/auth'
@@ -51,9 +51,9 @@ const Login = ({ login, isAuthenticated }) => {
             <MDBCol md="6">
                 <MDBContainer>
                     <form onSubmit={e => onSubmit(e)}>
-                        <h3 style={{ fontSize: "40px" }} className="h5 mb-4">Sign in</h3>
-                        <p style={{ fontSize: "20px" }} className="grey-text">
-                            Sign In to proceed to your dashboard
+                        <h1 style={{ fontSize: "xxx-large" }} className="h1-responsive font-weight-bold mb-2">Welcome.</h1>
+                        <p style={{ fontSize: "x-large" }} className="grey-text">
+                            Sign in to proceed to your dashboard
                         </p>
                         <div className="grey-text">
                         <MDBInput 
