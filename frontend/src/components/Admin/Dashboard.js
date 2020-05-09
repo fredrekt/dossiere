@@ -10,6 +10,9 @@ import { connect } from 'react-redux'
 import Spinner from '../Spinner'
 import { getCurrentProfile } from '../../actions/profile'
 import onboarding from '../../img/onboarding-vector.jpg'
+import happy from '../../img/happy-people.jpg'
+import DashboardPanels from '../DashboardPanels'
+import BlogMain from '../BlogMain'
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) =>{
 
@@ -39,6 +42,15 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                     <MDBProgress animated preloader value={80} className="my-2" />
                 </>,
     }]
+
+    const highlightArticle = [{
+        _id: 1,
+        title: "ReactJS Developer, useHooks or not?",
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sodales diam at vehicula aliquam. Ut posuere libero id massa efficitur lobortis. Sed auctor mauris ut sem semper faucibus.",
+        user: "fred",
+        date: "AUG 19, 2020"
+    }]
+
     return loading && profile === null ? (
         <>
         <AdminTitle adminTitle={loadingAdminTitle}/>
@@ -101,87 +113,84 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
             <AdminTitle adminTitle={adminTitle}/>
             <MDBContainer>
                 <MDBRow>
-                <div className="col-lg-3 col-md-12 mb-4">
-                        <div className="card z-depth-2 mt-3">
-                        <div className="">
-                        {/* <i class="fas fa-eye"></i> */}
-                            <i className="far fa-eye fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
-                            <div className="float-right text-right p-3">
-                            <p className="text-uppercase text-muted mb-1"><small>Views</small></p>
-                            <h4 className="font-weight-bold mb-0">23 000$</h4>
-                            </div>
-                        </div>
-                        <div className="card-body pt-0">
-                            <div className="progress md-progress">
-                            <div className="progress-bar bg-success" role="progressbar" style={{"width": "75%"}} aria-valuenow="75" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                            </div>
-                            <p className="card-text">Better than last week (75%)</p>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-12 mb-4">
-                        <div className="card z-depth-2 mt-3">
-                        <div className="">
-                        {/* <i class="fas fa-eye"></i> */}
-                            <i className="far fa-eye fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
-                            <div className="float-right text-right p-3">
-                            <p className="text-uppercase text-muted mb-1"><small>Views</small></p>
-                            <h4 className="font-weight-bold mb-0">23 000$</h4>
-                            </div>
-                        </div>
-                        <div className="card-body pt-0">
-                            <div className="progress md-progress">
-                            <div className="progress-bar bg-success" role="progressbar" style={{"width": "75%"}} aria-valuenow="75" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                            </div>
-                            <p className="card-text">Better than last week (75%)</p>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-12 mb-4">
-                        <div className="card z-depth-2 mt-3">
-                        <div className="">
-                        {/* <i class="fas fa-eye"></i> */}
-                            <i className="far fa-eye fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
-                            <div className="float-right text-right p-3">
-                            <p className="text-uppercase text-muted mb-1"><small>Views</small></p>
-                            <h4 className="font-weight-bold mb-0">23 000$</h4>
-                            </div>
-                        </div>
-                        <div className="card-body pt-0">
-                            <div className="progress md-progress">
-                            <div className="progress-bar bg-success" role="progressbar" style={{"width": "75%"}} aria-valuenow="75" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                            </div>
-                            <p className="card-text">Better than last week (75%)</p>
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-12 mb-4">
-                        <div className="card z-depth-2 mt-3">
-                        <div className="">
-                        {/* <i class="fas fa-eye"></i> */}
-                            <i className="far fa-eye fa-lg primary-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"></i>
-                            <div className="float-right text-right p-3">
-                            <p className="text-uppercase text-muted mb-1"><small>Views</small></p>
-                            <h4 className="font-weight-bold mb-0">23 000$</h4>
-                            </div>
-                        </div>
-                        <div className="card-body pt-0">
-                            <div className="progress md-progress">
-                            <div className="progress-bar bg-success" role="progressbar" style={{"width": "75%"}} aria-valuenow="75" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                            </div>
-                            <p className="card-text">Better than last week (75%)</p>
-                        </div>
-                        </div>
-                    </div>
+                    <DashboardPanels
+                        className="far fa-list-alt fa-lg default-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"
+                        title="Articles & Blogs"
+                        count="1205"
+                        progressValue="25"
+                        progressText="Articles & blogs are published"
+                    />
+                    <DashboardPanels
+                        className="far fa-envelope fa-lg default-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"
+                        title="Messages"
+                        count="109"
+                        progressValue="50"
+                        progressText="You have this total messages"
+                    />
+                    <DashboardPanels
+                        className="far fa-comments fa-lg default-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"
+                        title="Comments"
+                        count="301"
+                        progressValue="75"
+                        progressText="Total of comments per week"
+                    />
+                    <DashboardPanels
+                        className="far fa-eye fa-lg default-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"
+                        title="Views"
+                        count="856"
+                        progressValue="90"
+                        progressText="You are doing pretty good there"
+                    />
+                </MDBRow>
+                <MDBRow style={{ marginTop: "5%" }}>
+                    <MDBCol md="12">
+                        <MDBCard>
+                            <MDBCardBody>
+                                <MDBContainer>
+                                    <h3>
+                                        Article Highlight
+                                    </h3>
+                                    <p className="grey-text">
+                                        This article of yours is the highlight of the month! Many viewers and comments and 
+                                        human computer interaction.
+                                    </p>
+                                    <div>
+                                        <BlogMain
+                                            data={highlightArticle}
+                                        />
+                                    </div>
+                                </MDBContainer>
+                            </MDBCardBody>
+                        </MDBCard>
+                    </MDBCol>
                 </MDBRow>
             </MDBContainer>
             {profile !== null ? (
                 <>
-                    Already has a profile set up
+                <MDBModal centered size="md" isOpen={show}>
+                    <MDBModalBody style={{ padding: "10%" }}>
+                        <MDBContainer className="d-flex flex-column text-center justify-content-center">
+                            <div>
+                                <img src={happy} className="w-100" alt="onboarding team"/>
+                            </div>
+                            <div>
+                                <h4 style={{ fontWeight: "900" }} className="h4-responsive">
+                                    Welcome back { user && user.name }!
+                                </h4>
+                            </div>
+                            <div>
+                                <p className="grey-text">
+                                    Back so early, share us your thoughts and let us transform them into articles & blogs.
+                                </p>
+                            </div>
+                            <div>
+                                <MDBBtn onClick={handleClose} size="sm">
+                                    get working
+                                </MDBBtn>
+                            </div>
+                        </MDBContainer>
+                    </MDBModalBody>
+                </MDBModal>
                 </>
             ):
             ( 
