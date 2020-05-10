@@ -7,8 +7,11 @@ import { toast } from 'react-toastify'
 
 toast.configure()
 
-const showToast = ( toastMsg ) => {
+const showToastError = ( toastMsg ) => {
     toast.error(toastMsg)
+}
+const showSuccessToast = (toastMsg) => {
+    toast.success(toastMsg)
 }
 const Alert = ({ alerts }) => 
     alerts !== null && 
@@ -18,7 +21,8 @@ const Alert = ({ alerts }) =>
         {/* <MDBAlert dismiss key={alert.id} color={alert.alertType} >
             {alert.msg}
         </MDBAlert> */}
-        {showToast(alert.msg)}
+        {alert.alertType == "success" ? showSuccessToast(alert.msg) : showToastError(alert.msg)}
+        {/* {toast}.{alert.alertType}({alert.msg}) */}
     </MDBContainer>
 ))
 
