@@ -39,13 +39,15 @@ export const login = ( email, password ) => async dispatch => {
             payload: res.data
         });
 
+        dispatch(setAlert('User Verified', 'success'));
+
         dispatch(loadUser());
     } 
     catch (err) {
         const errors = err.response.data.errors
 
         if(errors){
-            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+            errors.forEach(error => dispatch(setAlert(error.msg, 'error')))
         }
 
         dispatch({ 
