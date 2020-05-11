@@ -485,6 +485,34 @@
   margin-bottom: 2%;
   margin-top: 2%;
 }
+
+/* ==== New Profile (Approved) ==== */
+.experiences-container{
+  overflow-y: scroll; 
+  height: 140px;
+  padding: 5%;
+}
+.experiences-container::-webkit-scrollbar {
+  width: 5px;
+  display: none;
+}
+
+/* Track */
+.experiences-container::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.experiences-container::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+.experiences-container::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+/* ==== New Profile Ends ==== */
+
 /* Profile Component Ends */
 .text-img-container{
   background-color: rgb(0, 0, 0);
