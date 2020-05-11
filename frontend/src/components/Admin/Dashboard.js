@@ -4,6 +4,7 @@ import { MDBJumbotron, MDBBtn, MDBContainer,
     MDBCardText, MDBModalFooter, MDBModal, MDBModalHeader,
     MDBModalBody
 } from 'mdbreact'
+import { Link, Redirect, withRouter } from 'react-router-dom'
 import AdminTitle from '../AdminTitle'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -14,7 +15,7 @@ import happy from '../../img/happy-people.jpg'
 import DashboardPanels from '../DashboardPanels'
 import BlogMain from '../BlogMain'
 
-const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) =>{
+const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading }, history }) =>{
 
     useEffect(()=>{
         getCurrentProfile();
@@ -24,6 +25,11 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const startOnboarding = () =>{
+        setShow(false)
+        history.push('/profile')
+    }
 
     const adminTitle = [{
         id: 1,
@@ -212,7 +218,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                                 </p>
                             </div>
                             <div>
-                                <MDBBtn onClick={handleClose} size="sm">
+                                <MDBBtn onClick={startOnboarding} size="sm">
                                     proceed to onboarding
                                 </MDBBtn>
                             </div>
@@ -237,4 +243,4 @@ const mapStateToProps = state =>({
     profile: state.profile
 })
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard)
+export default connect(mapStateToProps, { getCurrentProfile })(withRouter(Dashboard))
