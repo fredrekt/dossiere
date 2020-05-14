@@ -544,8 +544,7 @@
 
 /* ================ Create Post Starts =========== */
 .create-post-container{
-  overflow-y: scroll;
-  height: 650px;
+
 }
 [type=radio] { 
   position: absolute;
