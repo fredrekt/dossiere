@@ -10,10 +10,25 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
+    topic: {
+        type: String,
+        required: true
+    },
     content: {
         type: String,
         required: true
     },
+    sections: [{
+        section: {
+            type: Number
+        },
+        sectionTitle: {
+            type: String
+        },
+        sectionContent: {
+            type: String,
+        }
+    }],
     name: {
         type: String
     },

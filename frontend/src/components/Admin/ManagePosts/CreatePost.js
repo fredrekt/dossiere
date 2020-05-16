@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MDBContainer, MDBRow, MDBCol, 
     MDBCard, MDBCardBody, MDBCardText, MDBInput, 
     MDBBtn, MDBIcon } from 'mdbreact'
 import AdminTitle from '../../AdminTitle'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { createPost } from '../../../actions/post'
 
-const CreatePost = () => {
+const CreatePost = ({ createPost }) => {
+
+    const [ formData, setFormData ] = useState({
+        title: '',
+        topic: '',
+        content: '',
+        section: '',
+        sectionTitle: '',
+        sectionContent: ''
+    })
+
+    const [ Btn, setBtn ] = useState('Publish Article')
+
+    const { title, topic, content, section, sectionTitle, sectionContent } = formData
+
     const adminTitle = [{
         id: 2,
         icon: "pencil-alt",
@@ -12,10 +29,24 @@ const CreatePost = () => {
         title: "Compose An Article",
         subTitle: "This is an example definition of what you're gonna do with this type of composing of an article period."
     }]
+
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
     return (
     <>
         <AdminTitle adminTitle={adminTitle}/>
-        <MDBContainer className="create-post-container">
+        <MDBContainer className="create-post-container z-depth-2 p-5">
+            <form onSubmit={(e)=>{ 
+                e.preventDefault()
+                createPost(formData)
+                setBtn(
+                    <div className="spinner-border spinner-border-sm" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                ) 
+                setTimeout(() =>{
+                    setBtn('Publish Article')
+                },3000)
+                }}>
             <h2>
                 Select a preview    
             </h2> 
@@ -68,12 +99,30 @@ const CreatePost = () => {
             </div>
             <MDBRow>
                 <MDBCol md="9">
-                    <MDBInput label="Article Title"/>
+                    <MDBInput name="title" value={title} onChange={(e)=>onChange(e)}  label="Article Title"/>
+                </MDBCol>
+            </MDBRow>
+            <MDBRow>
+                <MDBCol md="9"> 
+                    <div className="grey-text mt-3 mb-3">
+                        Please select what is the topic of article is about
+                    </div>
+                    <div className="w-100">
+                        <select name="topic" value={topic} onChange={(e)=>onChange(e)} className="browser-default custom-select">
+                            <option value="Blog">Blog</option>
+                            <option value="News">News</option>                    
+                            <option value="Showcase">Showcase</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Food">Food</option>
+                            <option value="Portfolio">Portfolio</option>
+                            <option value="Work">Work</option>
+                        </select>
+                    </div>
                 </MDBCol>
             </MDBRow>
             <MDBRow>
                 <MDBCol md="9">
-                    <MDBInput type="textarea" label="Write your article content" rows="10" />
+                    <MDBInput name="content" value={content} onChange={(e)=>onChange(e)} type="textarea" label="Write your article content" rows="10" />
                 </MDBCol>
             </MDBRow>
             {/* <div class="custom-control custom-checkbox">
@@ -90,10 +139,10 @@ const CreatePost = () => {
             </div>
             <MDBRow>
                 <MDBCol md="6">
-                    <select className="browser-default custom-select">
-                    <option>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
+                    <select name="section" value={section} onChange={(e)=>onChange(e)} className="browser-default custom-select">
+                    <option value="1">Single Section</option>
+                    <option value="2">Option 1</option>
+                    <option value="3">Option 2</option>
                     <option value="3">Option 3</option>
                     </select>
                 </MDBCol>
@@ -105,20 +154,26 @@ const CreatePost = () => {
             </MDBRow>
             <MDBRow>
                 <MDBCol md="9">
-                    <MDBInput label="Section Title"/>
+                    <MDBInput name="sectionTitle" value={sectionTitle} onChange={(e)=>onChange(e)}label="Section Title"/>
                 </MDBCol>
             </MDBRow>
             <MDBRow>
                 <MDBCol md="9">
-                    <MDBInput type="textarea" label="Write your section content" rows="10" />
-                </MDBCol>
+                    <MDBInput name="sectionContent" value={sectionContent} onChange={(e)=>onChange(e)} type="textarea" label="Write your section content" rows="10" />
+                </MDBCol> 
             </MDBRow>
-            <MDBBtn size="md" color="primary">
-            <MDBIcon className="mr-1" icon="pencil-alt"/>Publish Article
+            <MDBBtn type="submit" className="ml-0" size="md" color="default">
+            <MDBIcon className="mr-1" icon="pencil-alt"/>{Btn}
             </MDBBtn>
+            </form>
         </MDBContainer>
     </>
     )
 }
 
-export default CreatePost
+CreatePost.propTypes = {
+    createPost: PropTypes.func.isRequired
+}
+
+
+export default connect(null, { createPost })(CreatePost)
