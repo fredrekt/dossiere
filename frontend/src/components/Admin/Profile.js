@@ -20,8 +20,9 @@ import congrats from '../../img/onboarding-congrats-vector.png'
 import FBLogin from './FBLogin'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { createProfile, getCurrentProfile } from '../../actions/profile'
+import { createProfile, getCurrentProfile, addExperience, addSkills, deleteSkill, deleteAccount } from '../../actions/profile'
 import { toast } from 'react-toastify'
+import ProfileExperience from '../ProfileExperience'
 
 toast.configure()
 
@@ -29,10 +30,13 @@ const showToast = toastMsg => {
     toast.error(toastMsg)
 }
 
-const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfile, history }) => {
+const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfile, addExperience, addSkills, deleteSkill, deleteAccount, history }) => {
 
     //form data post request - create profile (onboarding)
     const [ formData, setFormData ] = useState({
+        firstname: '',
+        lastname: '',
+        email: '',
         company: '',
         status: '',
         location: '',
@@ -57,18 +61,19 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
     })
 
     const [ expData, setExpData ] = useState({
-        job_title: '',
+        title: '',
         job_company: '',
         job_location: '',
+        from: '',
+        to: '',
+        job_current: false,
         job_description: '',
-        job_started: '',
-        job_ended: ''   
     })
 
     //destructuring
 
-    const { job_title, job_company, job_location, job_description,
-    job_started, job_ended } = expData
+    const { title, job_company, job_location,
+    from, to, job_current, job_description } = expData
 
     const { newSkills } = showSkills
     
@@ -108,19 +113,18 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
 
     const onChangeExperiences = e => setExpData({ ...expData, [e.target.name]: e.target.value })
 
-    const addSkills = async e =>{
+    const createNewSkills = e =>{
         e.preventDefault()
-        const additionalSkills = await newSkills
         console.log("add skills")
-        alert(additionalSkills)
+        addSkills(showSkills,history)
         setShow(false)
     }
 
-    const addExperience = async e =>{
+    const newExperience = e =>{
         e.preventDefault()
         console.log("add experience")
-        const data = await expData
-        alert(data.job_company+ ' '+ data.job_location)
+        addExperience(expData, history)
+        alert(expData)
         setShow(false)
     }
 
@@ -162,6 +166,9 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
         //setting the state of profile
         if(profile == null){
             setFormData({
+                firstname: '',
+                lastname: '',
+                email: '',
                 company: '',
                 website: '', 
                 location: '',
@@ -173,6 +180,9 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
         }
         else{
             setFormData({
+                firstname: loading || !profile.firstname ? '' : profile.firstname,
+                lastname: loading || !profile.lastname ? '' : profile.lastname,
+                email: loading || !profile.email ? '' : profile.email,
                 company: loading || !profile.company ? '': profile.company,
                 website: loading || !profile.website ? '': profile.website,
                 location: loading || !profile.location ? '': profile.location,
@@ -185,6 +195,9 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
 
     //destructuring formData state
     const {
+        firstname,
+        lastname,
+        email,
         company,
         status,
         location, 
@@ -213,6 +226,11 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
         createProfile(formData, history, profile!==null ? true: false);
     }
 
+    const noExperiences = [{
+        title: 'No Experiences Available'
+    }]
+
+    const fullname = `${firstname}, ${lastname}`
 
     return (
         <>
@@ -250,9 +268,9 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         <h4 className="font-weight-bold">
                                             Personal Information
                                         </h4>
-                                        <MDBInput value="Fredrick John" label="Your first name" outline className="w-100" />
-                                        <MDBInput value="Garingo" className="w-100" outline label="Your last name"/>
-                                        <MDBInput name="location" value={location} onChange={(e)=>onChange(e)}className="w-100" outline label="Your current location"/>
+                                        <MDBInput name="firstname" value={firstname} onChange={(e)=>onChange(e)} label="Your first name" outline className="w-100" />
+                                        <MDBInput name="lastname" value={lastname} onChange={(e)=>onChange(e)} className="w-100" outline label="Your last name"/>
+                                        <MDBInput name="location" value={location} onChange={(e)=>onChange(e)} className="w-100" outline label="Your current location"/>
                                     </div>
                                 </MDBCol>
                             </MDBRow>
@@ -265,7 +283,7 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         <MDBCardBody>
                                             <MDBCardText>
                                             <MDBIcon icon="quote-left mr-2" />
-                                            Hello World and this is my own bio and that will be all thank you very much God bless!
+                                            { profile ? profile.bio : "Hello World and this is my own bio and that will be all thank you very much God bless!"}
                                             <MDBIcon icon="quote-right ml-2" />
                                             </MDBCardText>
                                         </MDBCardBody>
@@ -276,8 +294,8 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         <h4 className="font-weight-bold">
                                             Contact Information
                                         </h4>
-                                        <MDBInput name="name" value="fred" label="Full Name" outline className="w-100" />
-                                        <MDBInput name="email" value="fred@gmail.com" className="w-100" outline label="Your Email"/>
+                                        <MDBInput name="fullname" disabled value={firstname.length === 0 && lastname.length === 0 ? fullname : 'Full name not set'} label="Full Name" outline className="w-100" />
+                                        <MDBInput name="email" value={email} onChange={(e)=>onChange(e)} className="w-100" outline label="Work / Business Email"/>
                                     </div>
                                 </MDBCol>
                             </MDBRow>
@@ -287,13 +305,7 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         Experiences
                                     </h4>
                                     <div className="experiences-container">
-                                        <MDBCard style={{ marginTop: "10%" }}>
-                                            <MDBCardBody>
-                                                <MDBCardText>
-                                                    Hello World 
-                                                </MDBCardText>
-                                            </MDBCardBody>
-                                        </MDBCard>
+                                       <ProfileExperience experience={!profile ? noExperiences :profile.experiences}/>
                                         <MDBCard style={{ marginTop: "10%" }}>
                                             <MDBCardBody>
                                                 <MDBCardText onClick={()=>handleShow('exp')} style={{ cursor: "pointer" }}>
@@ -315,8 +327,8 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         <h4 className="font-weight-bold">
                                             Secure Account
                                         </h4>
-                                        <MDBInput name="oldPassword" value="oldpasswordhere" label="Current password" outline className="w-100" />
-                                        <MDBInput name="newPassword" value="newpasswordhere" className="w-100" outline label="New Password"/>
+                                        <MDBInput type="password" name="oldPassword" value="oldpasswordhere" label="Current password" outline className="w-100" />
+                                        <MDBInput type="password" name="newPassword" value="newpasswordhere" className="w-100" outline label="New Password"/>
                                     </div>
                                 </MDBCol>
                             </MDBRow>
@@ -328,13 +340,15 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         </h4>  
                                     </div>
                                     <div>
-                                        <MDBBadge className="p-2 m-1 mr-1" color="primary">Javascript</MDBBadge>
-                                        <MDBBadge className="p-2 m-1 mr-1" color="success">ReactJS</MDBBadge>
-                                        <MDBBadge className="p-2 m-1 mr-1" color="info">StrapiJS</MDBBadge>
+                                        {   !profile ? <div className="text-center">No Skills available yet</div> :
+                                            profile.skills.map((value,index)=>(
+                                             <MDBBadge onClick={()=>deleteSkill(value)} className="p-2 m-1 mr-1" color="info">{value}</MDBBadge>
+                                        ))}
+                                        {/* <MDBBadge className="p-2 m-1 mr-1" color="info">StrapiJS</MDBBadge>
                                         <MDBBadge className="p-2 m-1 mr-1" color="warning">GatsbyJS</MDBBadge>
                                         <MDBBadge className="p-2 m-1 mr-1" color="danger">GraphQL</MDBBadge>
                                         <MDBBadge className="p-2 m-1 mr-1" color="light">Redux</MDBBadge>
-                                        <MDBBadge className="p-2 m-1 mr-1" color="dark">Machine Learning</MDBBadge>
+                                        <MDBBadge className="p-2 m-1 mr-1" color="dark">Machine Learning</MDBBadge> */}
                                         <MDBBadge style={{ cursor: 'pointer' }} onClick={()=>handleShow('skills')} className="p-2 m-1 mr-1" color="default">Add skills</MDBBadge>
                                     </div>
                                 </MDBCol>
@@ -360,6 +374,9 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         <MDBBtn type="submit" size="sm" color="success">
                                             {profile==null ? 'save changes': 'update profile'}
                                         </MDBBtn>
+                                        <MDBBtn onClick={()=>deleteAccount()} size="sm" color="danger" type="button">
+                                            Delete Account
+                                        </MDBBtn>
                                     </div>
                                 </MDBCol> 
                             </MDBRow>
@@ -378,7 +395,7 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                         <MDBIcon icon="times" />
                     </div>
                     <MDBContainer className="d-flex flex-column text-center justify-content-center">
-                    <form onSubmit={exp ? (e)=>addExperience(e) : exp===null ? (e)=>changeAvatar(e) : (e)=>addSkills(e) }>
+                    <form onSubmit={exp ? (e)=>newExperience(e) : exp===null ? (e)=>changeAvatar(e) : (e)=>createNewSkills(e) }>
                         <div>
                             <h4 className="h4-reponsive font-weight-bold">
                                 {!modalTitle ? 'blank title': modalTitle }
@@ -418,7 +435,7 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         </h5>
                                     </div>
                                     <div style={{ width: "200%"}}>
-                                        <MDBInput name="job_title" value={job_title} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="The Job Title" />
+                                        <MDBInput name="title" value={title} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="The Job Title" />
                                     </div>
                                 
                                     <div style={{ width: "200%"}}>
@@ -432,10 +449,10 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         </h5>
                                     </div>
                                     <div style={{ width: "200%"}}>
-                                        <MDBInput name="job_started" value={job_started} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="Date Started" />
+                                        <MDBInput name="from" value={from} onChange={(e)=>onChangeExperiences(e)} outline type="date" label="Date Started" />
                                     </div>
                                     <div style={{ width: "200%"}}>
-                                        <MDBInput name="job_ended" value={job_ended} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="Date Ended" />
+                                        <MDBInput name="to" value={to} onChange={(e)=>onChangeExperiences(e)} outline type="date" label="Date Ended" />
                                     </div>
                                 </div>
                                 <div className="text-center">
@@ -628,11 +645,15 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
 Profile.propTypes = {
     createProfile: PropTypes.func.isRequired,
     getCurrentProfile: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired,
+    addExperience: PropTypes.func.isRequired,
+    addSkills: PropTypes.func.isRequired,
+    deleteSkill: PropTypes.func.isRequired,
+    deleteAccount: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     profile: state.profile
 })
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(withRouter(Profile))
+export default connect(mapStateToProps, { createProfile, getCurrentProfile, addExperience, addSkills, deleteSkill, deleteAccount })(withRouter(Profile))

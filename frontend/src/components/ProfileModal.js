@@ -6,6 +6,10 @@ import portfolio from '../img/portfolio-vector.jpg'
 import upload from '../img/image-upload-vector.jpg'
 import workSkills from '../img/work-time-vector.jpg'
 import { toast } from 'react-toastify'
+import { Link, withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { addExperience } from '../actions/profile'
 
 toast.configure()
 
@@ -13,7 +17,7 @@ const showToast = toastMsg => {
     toast.error(toastMsg)
 }
 
-const ProfileModal = () => {
+const ProfileModal = ({ addExperience, history }) => {
 
     const [ show, setShow ] = useState(false)
 
@@ -27,18 +31,19 @@ const ProfileModal = () => {
     })
 
     const [ expData, setExpData ] = useState({
-        job_title: '',
-        job_company: '',
-        job_location: '',
-        job_description: '',
-        job_started: '',
-        job_ended: ''   
+        title: '',
+        company: '',
+        location: '',
+        from: '',
+        to: '' ,
+        current: false,
+        description: ''  
     })
 
     //destructuring
 
-    const { job_title, job_company, job_location, job_description,
-        job_started, job_ended } = expData
+    const { title, company, location,
+        from, to, current, description } = expData
 
     const { newSkills } = showSkills
     
@@ -86,11 +91,10 @@ const ProfileModal = () => {
         setShow(false)
     }
 
-    const addExperience = async e =>{
+    const newExperience = e =>{
         e.preventDefault()
         console.log("add experience")
-        const data = await expData
-        alert(data.job_company+ ' '+ data.job_location)
+        addExperience(expData, history)
         setShow(false)
     }
 
@@ -109,7 +113,7 @@ const ProfileModal = () => {
                     <MDBIcon icon="times" />
                 </div>
                 <MDBContainer className="d-flex flex-column text-center justify-content-center">
-                <form onSubmit={exp ? (e)=>addExperience(e) : exp===null ? (e)=>changeAvatar(e) : (e)=>addSkills(e) }>
+                <form onSubmit={exp ? (e)=>newExperience(e) : exp===null ? (e)=>changeAvatar(e) : (e)=>addSkills(e) }>
                     <div>
                         <h4 className="h4-reponsive font-weight-bold">
                             {!modalTitle ? 'blank title': modalTitle }
@@ -135,10 +139,10 @@ const ProfileModal = () => {
                                 </div>
                                 <div id="jobCompany">
                                     <div style={{ width: "200%"}}>
-                                        <MDBInput name="job_company" value={job_company} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="The Company Name" />
+                                        <MDBInput name="company" value={company} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="The Company Name" />
                                     </div>
                                     <div style={{ width: "200%"}}>
-                                        <MDBInput name="job_location" value={job_location} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="Company's Location" />
+                                        <MDBInput name="location" value={location} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="Company's Location" />
                                     </div>
                                 </div>
                             </div>
@@ -149,11 +153,11 @@ const ProfileModal = () => {
                                     </h5>
                                 </div>
                                 <div style={{ width: "200%"}}>
-                                    <MDBInput name="job_title" value={job_title} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="The Job Title" />
+                                    <MDBInput name="title" value={title} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="The Job Title" />
                                 </div>
                             
                                 <div style={{ width: "200%"}}>
-                                    <MDBInput name="job_description" value={job_description} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="Job Description" />
+                                    <MDBInput name="description" value={description} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="Job Description" />
                                 </div>
                             </div>
                             <div id="jobDuration" style={{ display: displayExp === 3 ? 'inline' : 'none' }} className="job-status">
@@ -163,10 +167,10 @@ const ProfileModal = () => {
                                     </h5>
                                 </div>
                                 <div style={{ width: "200%"}}>
-                                    <MDBInput name="job_started" value={job_started} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="Date Started" />
+                                    <MDBInput name="from" value={from} onChange={(e)=>onChangeExperiences(e)} outline type="date" label="Date Started" />
                                 </div>
                                 <div style={{ width: "200%"}}>
-                                    <MDBInput name="job_ended" value={job_ended} onChange={(e)=>onChangeExperiences(e)} outline type="text" label="Date Ended" />
+                                    <MDBInput name="to" value={to} onChange={(e)=>onChangeExperiences(e)} outline type="date" label="Date Ended" />
                                 </div>
                             </div>
                             <div className="text-center">
@@ -213,4 +217,9 @@ const ProfileModal = () => {
     )
 }
 
-export default ProfileModal
+ProfileModal.propTypes = {
+    addExperience: PropTypes.func.isRequired
+}
+
+
+export default connect(null, { addExperience } )(ProfileModal)

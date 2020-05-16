@@ -32,6 +32,15 @@ route.post('/',
     check('status', 'Status is required')
     .not()
     .isEmpty(),
+    check('firstname', 'Firstname is required')
+    .not()
+    .isEmpty(),
+    check('lastname', 'Lastname is required')
+    .not()
+    .isEmpty(),
+    check('email', 'Work email is required')
+    .not()
+    .isEmpty(),
     check('skills', 'Skills are required')
     .not()
     .isEmpty()
@@ -40,9 +49,12 @@ async (req, res) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
         console.log(errors.array())
-        return res.status(400).json({ errors: errors.array });
+        return res.status(400).json({ errors: errors.array() });
     }
-    const { 
+    const {
+        firstname,
+        lastname,
+        email, 
         company,
         website,
         location, 
@@ -58,6 +70,9 @@ async (req, res) => {
     // Build profile object
     const profileFields = {}
     profileFields.user = req.user.id
+    if(firstname) profileFields.firstname = firstname
+    if(lastname) profileFields.lastname = lastname
+    if(email) profileFields.email = email
     if(company) profileFields.company = company
     if(website) profileFields.website = website
     if(location) profileFields.location = location
@@ -143,6 +158,45 @@ route.delete('/', auth, async (req, res) => {
     }
 })
 
+
+
+// use: delete api/profile
+// description: add skills to user
+// access: private
+
+route.put('/newskills', [ auth, [ 
+    check('skills', 'skills are required') 
+    .not()
+    .isEmpty()
+] ], 
+    async (req, res) => {
+        //const skillFields = {}
+        const { skills } = req.body
+        // if(skills) {
+        //     skillFields.skills = skills.split(',').map(skill => skill.trim())
+        // }
+        try {
+            const errors = validationResult(req)
+            if(!errors.isEmpty()){
+                return res.status(400).json({ errors: errors.array() })
+            }
+            const profile = await Profile.findOne({ user: req.user.id }) 
+            profile.skills.unshift(skills)
+            await profile.save()
+            
+            res.json(profile)
+        } 
+        catch (err) {
+            console.error(err.message)
+            res.status(500).send('Server Error')
+        }
+    }
+)
+
+
+
+
+
 // use: put api/profile/experience
 // description: add experience
 // access: private
@@ -208,6 +262,23 @@ route.delete('/experience/:exp_id', auth, async (req, res) =>{
        const removeIndex = profile.experiences.map(item => item.id).indexOf
        (req.params.exp_id)
        profile.experiences.splice(removeIndex, 1)
+       profile.save()
+       res.json(profile)
+    } 
+    catch (err) {
+        console.log(err.message)
+        res.status(500).send('Server Error')
+    }
+})
+
+// use: delete api/profile/skills/skill name
+// description: delete experiences from profile by exp_id
+// access: private
+route.delete('/removeskills/:skill', auth, async (req, res) =>{
+    try {
+       const profile = await Profile.findOne({ user:req.user.id }) 
+       const removeIndex = profile.skills.indexOf(req.params.skill)
+       profile.skills.splice(removeIndex, 1)
        profile.save()
        res.json(profile)
     } 
