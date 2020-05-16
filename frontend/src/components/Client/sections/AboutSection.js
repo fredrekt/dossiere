@@ -1,6 +1,6 @@
 import React from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact'
-import pp from '../../../img/working.jpg'
+import think from '../../../img/thinking-vector.jpg'
 
 
 const AboutSection = (props) => {
@@ -19,7 +19,7 @@ const AboutSection = (props) => {
                 <MDBRow>
                     <MDBCol md="6">
                         <div className="about-img">
-                            <img src={pp} className="w-100" alt=""/>
+                            <img src={think} className="w-100" alt=""/>
                         </div>
                     </MDBCol>
                     <MDBCol md="6">
