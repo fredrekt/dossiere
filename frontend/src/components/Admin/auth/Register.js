@@ -18,18 +18,31 @@ const Register = ({ createAccount, setAlert }) => {
         password2: ''
     }) 
 
+    const [ btn, setBtn ] = useState('Create account')
+
     const { name, email, password, password2 } = formData
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
     const onSubmit = async e => {
         e.preventDefault();
+        setBtn(
+            <div className="spinner-border spinner-border-sm" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
+        ) 
         if(password !== password2){
             setAlert('Passwords do not match', 'error')
             setFormData({ password: '', password2: '' })
+            setTimeout(()=>{
+                setBtn('Create account')
+            },3000)
         }
         else{
             createAccount({ name, email, password });
+            setTimeout(()=>{
+                setBtn('Create account')
+            },3000)
         }
     }
 
@@ -88,7 +101,7 @@ const Register = ({ createAccount, setAlert }) => {
                             Already have an account? <Link to="/login">Sign In here</Link>
                         </div>
                         <div className="text-center">
-                        <MDBBtn id="btn-id-submit" type="submit" className="w-100 ml-0">Create Account</MDBBtn>
+                        <MDBBtn id="btn-id-submit" type="submit" className="w-100 ml-0">{btn}</MDBBtn>
                         </div>
                     </form>
                 </MDBContainer>

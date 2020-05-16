@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBRow, 
-    MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+    MDBCol, MDBBtn, MDBInput, MDBAnimation } from 'mdbreact';
 import frontdesk from '../../../img/development.jpg'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -29,9 +29,13 @@ const Login = ({ login, isAuthenticated }) => {
                 <span className="sr-only">Loading...</span>
             </div>
         ) 
-        setTimeout(
         login( email, password )
-        ,1000)
+
+        if(isAuthenticated) setBtn('Login')
+
+        setTimeout(() =>{
+            setBtn('Login')
+        },3000)
         //setBtn('Login')
         // login( email, password )
         console.log(formData)
@@ -43,6 +47,7 @@ const Login = ({ login, isAuthenticated }) => {
     }
 
   return (
+      <MDBAnimation type="slideInLeft" reveal>
       <MDBContainer style={{'margin-top':'13%'}}>
         <MDBRow>
             <MDBCol md="6">
@@ -60,7 +65,7 @@ const Login = ({ login, isAuthenticated }) => {
                             className="w-100" 
                             label="Type your email" 
                             group 
-                            type="email" 
+                             
                             validate 
                             name="email"
                             value={email}
@@ -89,6 +94,7 @@ const Login = ({ login, isAuthenticated }) => {
                 </MDBCol>
         </MDBRow>
       </MDBContainer>
+      </MDBAnimation>
   );
 };
 
