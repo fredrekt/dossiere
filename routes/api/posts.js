@@ -19,6 +19,24 @@ route.get('/all-posts', async(req, res)=>{
     }
 })
 
+
+
+//use: GET api/posts 
+//description: get all posts by user
+route.get('/own', auth ,async(req, res)=>{
+    try {
+        //const user = await User.findById(req.params.user_id).select('-password')
+        const posts = await Post.find({user: req.user.id}).sort({ date: -1 })
+        res.json(posts)
+    } 
+    catch (err) {
+        console.log(err)
+        res.status(500).send('Server Error')
+    }
+})
+
+
+
 //use: GET api/posts 
 //description: get all posts or blogs
 route.get('/', auth, async(req, res) => {
@@ -32,9 +50,28 @@ route.get('/', auth, async(req, res) => {
     }
 })
 
+//use: GET api/posts/:id 
+//description: get post or blog by post id without auth
+route.get('/current/:post_id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.post_id).sort({ date: -1 })
+        if(!post){
+            return res.status(404).json({ msg: "Post not found" })
+        }
+        res.json(post)
+    } 
+    catch (err) {
+        console.log(err)
+        if(err.kind === 'ObjectId'){
+            return res.status(404).json({ msg: "Post not found" })
+        }
+        res.status(500).send('Server Error')
+    }
+})
+
 
 //use: GET api/posts/:id 
-//description: get post or blog by post id
+//description: get post or blog by post id with user auth
 route.get('/:id', auth, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id).sort({ date: -1 })
@@ -60,7 +97,10 @@ route.post('/', [auth,
     check('title', 'Title is required')
     .not()
     .isEmpty(),
-    check('content', 'Skills are required')
+    check('topic', 'A Topic is required')
+    .not()
+    .isEmpty(),
+    check('content', 'Content are required')
     .not()
     .isEmpty()
 ]], 
@@ -68,15 +108,25 @@ route.post('/', [auth,
         const errors = validationResult(req)
         if(!errors.isEmpty()){
             console.log(errors.array())
-            return res.status(400).json({ errors: errors.array });
+            return res.status(400).json({ errors: errors.array() });
         }
    
         try {
             const user = await User.findById(req.user.id).select('-password')
-        
+
+            const addSection = { 
+                section: req.body.section,
+                sectionTitle: req.body.sectionTitle,
+                sectionContent: req.body.sectionContent
+            }
+
+            //post.sections.unshift(addSection)
+
             const newPost = new Post({
                 title: req.body.title,
+                topic: req.body.topic,
                 content: req.body.content,
+                sections: addSection,
                 user: req.user.id,
                 avatar: user.avatar
             })
@@ -100,7 +150,7 @@ route.delete('/:id', auth, async (req, res) => {
             return res.status(404).json({ msg: "Post not found" })
         }
         if(post.user.toString() !== req.user.id){
-            return res.status(401).json({ msg: "User not authorized found" })
+            return res.status(401).json({ msg: "User not authorized!" })
         }
         await post.remove()
         res.json({ msg: "Post removed" })
@@ -161,27 +211,26 @@ route.put('/unlike/:id', auth, async (req, res) =>{
 
 //use: POST api/posts/comment/:id 
 //description: comment to a post or blog
-route.post('/comment/:id', [auth, 
-    [
+route.post('/comment/:id', [
     check('comment', 'A comment is required')
     .not()
     .isEmpty()
-]], 
+], 
     async (req, res) => {
         const errors = validationResult(req)
         if(!errors.isEmpty()){
             console.log(errors.array())
-            return res.status(400).json({ errors: errors.array });
+            return res.status(400).json({ errors: errors.array() });
         }
    
         try {
-            const user = await User.findById(req.user.id).select('-password')
+            //const user = await User.findById(req.user.id).select('-password')
             const post = await Post.findById(req.params.id)
             
             const newComment = {
                 comment: req.body.comment,
-                user: req.user.id,
-                avatar: user.avatar
+                user: null,
+                avatar: null
             }
 
             post.comments.unshift(newComment)
