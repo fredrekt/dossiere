@@ -113,7 +113,7 @@ export const addExperience = (expData, history) => async dispatch => {
 
 
 //update profile - add skills
-export const addSkills = (formData, history) => async dispatch => {
+export const addSkills = (formData) => async dispatch => {
     const newSkillsData = {}
     const { newSkills } = formData
     newSkillsData.skills = newSkills;
@@ -132,7 +132,6 @@ export const addSkills = (formData, history) => async dispatch => {
         });
 
         dispatch(setAlert('Skills Added', 'success'));
-        history.push('/admin')
 
     } 
     catch (err) {

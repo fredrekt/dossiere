@@ -115,8 +115,9 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
 
     const createNewSkills = e =>{
         e.preventDefault()
-        console.log("add skills")
+        console.log("added new skills")
         addSkills(showSkills,history)
+        setSkills({newSkills:""})
         setShow(false)
     }
 
@@ -124,7 +125,6 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
         e.preventDefault()
         console.log("add experience")
         addExperience(expData, history)
-        alert(expData)
         setShow(false)
     }
 
@@ -294,7 +294,7 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         <h4 className="font-weight-bold">
                                             Contact Information
                                         </h4>
-                                        <MDBInput name="fullname" disabled value={firstname.length === 0 && lastname.length === 0 ? fullname : 'Full name not set'} label="Full Name" outline className="w-100" />
+                                        <MDBInput name="fullname" disabled value={ profile === null || profile.firstname === null || profile.lastname === null ? 'Full name not set' : fullname } label="Full Name" outline className="w-100" />
                                         <MDBInput name="email" value={email} onChange={(e)=>onChange(e)} className="w-100" outline label="Work / Business Email"/>
                                     </div>
                                 </MDBCol>
@@ -304,9 +304,9 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                     <h4 style={{ marginTop: "10%" }} className="font-weight-bold">
                                         Experiences
                                     </h4>
-                                    <div className="experiences-container">
+                                    <div className="experiences-container" style={{ overflowY:  profile === null || profile.experiences.length === 0  ? 'hidden' : 'scroll'  }}>
                                        <ProfileExperience experience={!profile ? noExperiences :profile.experiences}/>
-                                        <MDBCard style={{ marginTop: "10%" }}>
+                                        <MDBCard style={{ marginTop: "10%", display: !profile ? 'none' : 'block' }}>
                                             <MDBCardBody>
                                                 <MDBCardText onClick={()=>handleShow('exp')} style={{ cursor: "pointer" }}>
                                                     <div className="d-flex flex-row justify-content-center">
@@ -349,7 +349,7 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         <MDBBadge className="p-2 m-1 mr-1" color="danger">GraphQL</MDBBadge>
                                         <MDBBadge className="p-2 m-1 mr-1" color="light">Redux</MDBBadge>
                                         <MDBBadge className="p-2 m-1 mr-1" color="dark">Machine Learning</MDBBadge> */}
-                                        <MDBBadge style={{ cursor: 'pointer' }} onClick={()=>handleShow('skills')} className="p-2 m-1 mr-1" color="default">Add skills</MDBBadge>
+                                        <MDBBadge style={{ cursor: 'pointer', display: !profile ? 'none' : 'inline' }} onClick={()=>handleShow('skills')} className="p-2 m-1 mr-1" color="default">Add skills</MDBBadge>
                                     </div>
                                 </MDBCol>
                                 <MDBCol lg="9" md="10">
@@ -359,8 +359,8 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                                         </h4>
                                         <MDBInput type="text" name="company" value={company} onChange={(e)=>onChange(e)} label="Your company" outline className="w-100" />
                                         <MDBInput type="text" name="status" value={status} onChange={(e)=>onChange(e)} label="Your job status" outline className="w-100" />
-                                        <MDBInput type="text" name="skills" value={skills} onChange={(e)=>onChange(e)} label="Your Skills" outline className="w-100" />
-                                        <MDBInput type="text" name="bio" value={bio} onChange={(e)=>onChange(e)} label="Your Bio" outline className="w-100" />
+                                        <MDBInput style={{ display: profile === null ? 'inline' : 'none' }} type="text" name="skills" value={skills} onChange={(e)=>onChange(e)} label={profile === null ? "Your Skills" : ''} outline className="w-100" />
+                                        <MDBInput type="textarea" rows="3" name="bio" value={bio} onChange={(e)=>onChange(e)} label="Your Bio" outline className="w-100" />
                                         <MDBInput type="text" name="website" value={website} onChange={(e)=>onChange(e)} label="Your website" outline className="w-100" />
                                     </div>
                                 </MDBCol>
