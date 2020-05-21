@@ -1,17 +1,126 @@
+.font-custom{
+  font-family: 'Rokkitt', serif;
+}
+.custom-hover-button:hover{
+  color: #fff;
+  background: #000;
+}
 #app-title{
   text-transform: uppercase;
   font-size: 25px;
   font-weight: bold;
 }
 .nav-item{
-  padding: 5px;
+  padding: 15px;
+  font-weight: 500;
+}
+.nav-link:hover{
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15)
 }
 .nav-item:hover{
-  border-bottom:1px solid rgba(0, 0, 0, 0.5);
+  
 }
 .font-weight-500{
   font-weight: 500;
 }
+.link-landing-custom{
+  color: #fff;
+}
+.link-landing-custom:hover{
+  color: #0099ff;
+}
+.newsletter-subscription-button{ 
+  color: #fff;
+  background: #0099ff;
+  padding: 13px 20px;
+  border: 0;
+  text-transform: uppercase;
+  font-size: medium;
+  transition-duration: 0.6s;
+  display: inline-block;
+  font-size: medium;
+  font-weight: 900;
+  width: 100%;
+}
+.newsletter-subscription-button:hover{
+  color: #0099ff;
+  background: #fff;
+}
+.newsletter-cancel{
+  margin-top: 5%;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+.newsletter-cancel a{
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.newsletter-cancel:hover{
+  text-decoration: none;
+}
+/* ============== Landing Page Starts =============== */
+.landing-wrapper{
+  /* background-image: url('./img/blob-landing.svg'); */
+}
+.landing-btn:hover{
+  background: red;
+  color: black;
+}
+
+/* Services Section Starts */
+.services-wrapper{
+  background-image: url('./img/how-landing-2.svg'), url('./img/blob-services-1.svg'), url('./img/blob-services-2.svg'), url('./img/blob-services-3.svg');
+  background-position: -125px top, 830px 20px, 300px 200px, 500px -100px;
+  background-repeat: no-repeat;
+}
+.services-pricing-container{
+  margin-bottom: 15%;
+}
+.landing-services-name small{
+  font-weight: 900;
+  font-size: large;
+}
+#pricing-currency{
+  font-weight: 900;
+  font-size: large;
+}
+#pricing-price{
+  font-weight: 900;
+  font-size: xxx-large;
+}
+#pricing-duration{
+  color: grey;
+  font-size: x-large;
+}
+.services-features-list-container{
+  margin-bottom: 10%
+}
+.services-features-container{
+  padding: 4%;
+}
+.services-features-button{ 
+  color: #0099ff;
+  background: #fff;
+  padding: 6px 15px;
+  border: 0;
+  text-transform: uppercase;
+  font-size: medium;
+  transition-duration: 0.6s;
+  display: inline-block;
+  font-size: small;
+  font-weight: 900;
+}
+.services-features-button:hover{
+  color: #fff;
+  background: #0099ff;
+  padding: 6px 15px;
+}
+
+
+/* Services Section Ends */
+
+/* ============== Landing Page Ends =============== */
+
 /* Home Component Ends */
 /* =========== Introduction Section Starts =========== */
 .portfolio-container{
@@ -493,14 +602,13 @@
 }
 
 /* ==== New Profile (Approved) ==== */
-.experiences-container{
-  overflow-y: scroll; 
+.experiences-container{ 
   height: 140px;
   padding: 5%;
 }
 .experiences-container::-webkit-scrollbar {
   width: 5px;
-  display: none;
+  display: inline;
 }
 
 /* Track */
