@@ -23,9 +23,9 @@ const AdminTitle = props => {
             </>
         ))
     return (
-        <>
+        <div style={{ marginTop: '15%' }}>
             {adminContent}
-        </>
+        </div>
     )
 }
 
