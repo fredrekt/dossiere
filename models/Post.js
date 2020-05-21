@@ -59,7 +59,20 @@ const PostSchema = new Schema({
         date: {
             type: Date,
             default: Date.now
-        }
+        },
+        replies: [{
+            user: {
+                type: Schema.Types.ObjectId,
+                ref: 'users'
+            },
+            comment: {
+                type: String
+            },
+            date: {
+                type: Date,
+                default: Date.now
+            }
+        }]
     }],
     date: {
         type: Date,
