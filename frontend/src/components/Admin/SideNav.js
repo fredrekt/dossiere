@@ -16,6 +16,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logout } from '../../actions/auth'
 import PrivateRoute from '../routing/PrivateRoute'
+import NewProfile from './Profile'
 
 const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
 
@@ -23,11 +24,11 @@ const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
     // if(!isAuthenticated){
     //     return <Redirect to="/login"/>
     // }
-
+    
     return(
         <BrowserRouter>
         <SideNav 
-        style={{'background':'elegant-color', 'height': '100%'}}
+        style={{'background':'elegant-color', 'height': '100%', position: 'fixed'}}
     onSelect={(selected) => {
         // Add your code here
 
@@ -115,14 +116,14 @@ const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
     </SideNav.Nav>
 </SideNav>
 <Switch>
-    <MDBContainer style={{ marginTop: '-5%', marginLeft:'20%' }}>
+    <MDBContainer style={{ marginTop: '-5%', marginLeft:'20%', marginBottom: "5%" }}>
         <PrivateRoute exact path="/admin" component={Dashboard}/>
-        <Route exact path="/create-post" component={CreatePost}/>
-        <Route exact path="/active-posts" component={ActivePosts}/>
+        <PrivateRoute exact path="/create-post" component={CreatePost}/>
+        <PrivateRoute exact path="/active-posts" component={ActivePosts}/>
         <Route exact path="/analytics-posts" component={PostAnalytics}/>
         <Route exact path="/archived-posts" component={ArchivedPosts}/>
         <Route exact path="/contact-help" component={ContactHelp}/>
-        <Route exact path="/profile" component={Profile}/>
+        <PrivateRoute exact path="/profile" component={NewProfile}/>
     </MDBContainer>
 </Switch>
 </BrowserRouter>
