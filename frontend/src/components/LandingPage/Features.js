@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact'
 import cloud from '../../img/cloud-feature.json'
 import cms from '../../img/features-content.json'
@@ -7,19 +7,6 @@ import Lottie from 'lottie-react-web'
 import Slide from 'react-reveal'
 
 const Features = () => {
-
-    const [ hover, setHover ] = useState(false)
-
-    const styledButton = { 
-        color:  !hover ? "#fff" : '#0099ff',
-        border: 0,
-        background: !hover ? "#0099ff" : '#fff',
-        padding: "6px 15px",
-        textTransform: "uppercase",
-        fontSize: "medium",
-        'transition-duration': "0.6s",
-        display: 'inline-block'
-    }
 
     const marginBT = {
         marginTop: "5%",
@@ -61,7 +48,7 @@ const Features = () => {
                             of your computer's hard drive. The cloud is just a metaphor for the Internet. The cloud is also not about having 
                             a dedicated network attached storage (NAS) hardware or server in residence
                             </h6>
-                            <button onMouseEnter={()=>setHover(!hover)} onMouseLeave={()=>setHover(!hover)} className="z-depth-1 landing-btn mt-3" style={styledButton}>get started</button>
+                            <button className="landing-features-button z-depth-1 mt-3">get started</button>
                             </MDBContainer>
                         </MDBCol>
                     </MDBRow>
@@ -78,7 +65,7 @@ const Features = () => {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eum asperiores sed dolores doloribus.
                             </h6>
-                            <button onMouseEnter={()=>setHover(!hover)} onMouseLeave={()=>setHover(!hover)} className="z-depth-1 landing-btn mt-3" style={styledButton}>compose article</button>
+                            <button className="landing-features-button z-depth-1 mt-3">compose article</button>
                             </MDBContainer>
                         </MDBCol>
                         <MDBCol md="7">
@@ -110,7 +97,7 @@ const Features = () => {
                                 publishing of information in any form or medium. When stored and accessed via computers, this information 
                                 may be more specifically referred to as digital content, or simply as content.
                             </h6>
-                            <button onMouseEnter={()=>setHover(!hover)} onMouseLeave={()=>setHover(!hover)} className="z-depth-1 landing-btn mt-3" style={styledButton}>start managing</button>
+                            <button className="landing-features-button z-depth-1 mt-3">start managing</button>
                             </MDBContainer>
                         </MDBCol>
                     </MDBRow>

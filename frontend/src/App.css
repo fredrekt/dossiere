@@ -58,6 +58,21 @@
 .newsletter-cancel:hover{
   text-decoration: none;
 }
+.landing-features-button{
+  background: #0099ff;
+  border: 0;
+  color: #fff;
+  padding: 8px 15px;
+  text-transform: uppercase;
+  font-size: small;
+  transition-duration: 0.6s;
+  display: inline-block;
+  font-weight: 900;
+}
+.landing-features-button:hover{
+  background: #fff;
+  color: #0099ff;
+}
 /* ============== Landing Page Starts =============== */
 .landing-wrapper{
   /* background-image: url('./img/blob-landing.svg'); */
