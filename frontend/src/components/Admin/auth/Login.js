@@ -48,10 +48,10 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
       <MDBAnimation type="slideInLeft" reveal>
-      <MDBContainer style={{'margin-top':'13%'}}>
+      <MDBContainer style={{'margin-top':'20%'}}>
         <MDBRow>
             <MDBCol md="6">
-                <img style={{ "width": "500px", "margin-top": "-15%" }} src={frontdesk} alt=""/>
+                <img style={{ "width": "500px", "margin-top": "-5%" }} src={frontdesk} alt=""/>
             </MDBCol>
             <MDBCol md="6">
                 <MDBContainer>
