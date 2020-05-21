@@ -1,5 +1,7 @@
 import React from 'react'
 import { MDBProgress } from 'mdbreact'
+import CountUp from 'react-countup'
+
 const DashboardPanels = (props) => {
     return (
         <>
@@ -9,7 +11,12 @@ const DashboardPanels = (props) => {
                 <i className={props.className}></i>
                 <div className="float-right text-right p-3">
                 <p style={{ fontSize: "small" }} className="text-uppercase font-weight-bold mb-1"><b>{props.title}</b></p>
-                <h4 className="mb-0">{props.count}</h4>
+                <h4 className="mb-0">
+                    <CountUp 
+                        end={props.count}
+                        duration={20}
+                    />
+                </h4>
                 </div>
             </div>
             <div className="card-body pt-0">
