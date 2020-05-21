@@ -4,6 +4,9 @@ import {  MDBRow, MDBCol, MDBMask,
 import Breadcrumbs from './Breadcrumbs'
 import axios from 'axios'
 import BlogMain from './BlogMain';
+import loadspinner from '../img/working-construction.json'
+import Lottie from 'lottie-react-web'
+
 class BlogPage extends Component{
   constructor(props) {
     super(props)
@@ -24,7 +27,20 @@ class BlogPage extends Component{
     }
     render(){
       const posts = this.state.posts
-        return(
+        return posts.length === 0 ? 
+        <>
+        <Lottie
+            options={{
+                animationData: loadspinner
+            }}
+            width = "30%"
+            height = "30%"
+        />
+        <div style={{ marginTop: "5%" }} className="text-center grey-text">
+            This will just take a second while we build everything from scratch   
+        </div>
+        </>
+        :(
             <>
             <Breadcrumbs
                 bcrumbs_color="white"
@@ -39,94 +55,7 @@ class BlogPage extends Component{
           anim id est laborum.
         </p>
         <BlogMain data={posts}/>
-        <hr className="my-5" />
-        <MDBRow>
-          <MDBCol lg="7">
-            <a href="#!" className="pink-text">
-              <h6 className="font-weight-bold mb-3">
-                <MDBIcon icon="image" className="pr-2" />
-                Lifestyle
-              </h6>
-            </a>
-            <h3 className="font-weight-bold mb-3 p-0">
-              <strong>Title of the news</strong>
-            </h3>
-            <p>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti quos
-              dolores et quas molestias excepturi sint occaecati cupiditate
-              non provident.
-            </p>
-            <p>
-              by&nbsp;
-              <a href="#!">
-                <strong>Carine Fox</strong>
-              </a>
-              , 14/08/2018
-            </p>
-            <MDBBtn
-              color="pink"
-              size="md"
-              className="mb-lg-0 mb-4 waves-light"
-            >
-              Read more
-            </MDBBtn>
-          </MDBCol>
-          <MDBCol lg="5">
-            <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
-              <img
-                className="img-fluid"
-                src="https://mdbootstrap.com/img/Photos/Others/img%20(34).jpg"
-                alt=""
-              />
-              <a href="#!">
-                <MDBMask overlay="white-slight" />
-              </a>
-            </MDBView>
-          </MDBCol>
-        </MDBRow>
-        <hr className="my-5" />
-        <MDBRow className="mb-5">
-          <MDBCol lg="5">
-            <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
-              <img
-                className="img-fluid"
-                src="https://mdbootstrap.com/img/Photos/Others/img (28).jpg"
-                alt=""
-              />
-              <a href="#!">
-                <MDBMask overlay="white-slight" />
-              </a>
-            </MDBView>
-          </MDBCol>
-          <MDBCol lg="7">
-            <a href="#!" className="indigo-text">
-              <h6 className="font-weight-bold mb-3">
-                <MDBIcon icon="suitcase" className="pr-2" />
-                Food
-              </h6>
-            </a>
-            <h3 className="font-weight-bold mb-3 p-0">
-              <strong>Title of the news</strong>
-            </h3>
-            <p>
-              Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-              aut fugit, sed quia consequuntur magni dolores eos qui ratione
-              voluptatem sequi nesciunt. Neque porro qui dolorem ipsum quia
-              sit amet.
-            </p>
-            <p>
-              by&nbsp;
-              <a href="#!">
-                <strong>Carine Fox</strong>
-              </a>
-              , 11/08/2018
-            </p>
-            <MDBBtn color="indigo" size="md" className="waves-light ">
-              Read more
-            </MDBBtn>
-          </MDBCol>
-        </MDBRow>
+        {/* <hr className="my-5" /> */}
         </>
         )
     }
