@@ -1,5 +1,6 @@
 const express = require('express')
 const connectDB = require('./config/db')
+const path = require('path')
 //dir: routes/api
 const users = require('./routes/api/users')
 const auth = require('./routes/api/auth')
@@ -13,8 +14,8 @@ connectDB()
 
 //initialize middleware
 app.use(express.json({ extended: false }))
-//
-app.get('/', (req, res) => res.send('API running'))
+// remove for deployment
+// app.get('/', (req, res) => res.send('API running'))
 
 //defining routes
 //user
@@ -27,6 +28,16 @@ app.use('/api/profile', profile)
 app.use('/api/posts', posts)
 //contact 
 app.use('/api/contact', contact)
+
+//serve static asset into production
+if(process.env.NODE_ENV === 'production'){
+    //set static folder
+    app.use(express.static('frontend/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    })
+}
 
 const PORT = process.env.PORT || 5000
 
