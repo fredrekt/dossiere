@@ -10,16 +10,18 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Spinner from '../Spinner'
 import { getCurrentProfile } from '../../actions/profile'
+import { loadUser } from '../../actions/auth'
 import onboarding from '../../img/onboarding-vector.jpg'
 import happy from '../../img/happy-people.jpg'
 import DashboardPanels from '../DashboardPanels'
 import BlogMain from '../BlogMain'
 
-const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading }, history }) =>{
+const Dashboard = ({ loadUser, getCurrentProfile, auth: { user }, profile: { profile, loading }, history }) =>{
 
     useEffect(()=>{
+        loadUser()
         getCurrentProfile();
-    }, [])
+    }, [loadUser])
 
     const [show, setShow] = useState(true);
 
@@ -42,6 +44,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
     const loadingAdminTitle = [{
         id:99,
         title: "The text is still loading bear with us for a while.",
+        topic: "Programming",
         className : "mt-2 ml-1",
         icon : "",
         subTitle: <>
@@ -233,9 +236,10 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
 }
 
 Dashboard.propTypes = {
-    getCurrentProfile: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    profile: PropTypes.object.isRequired,
+    loadUser: PropTypes.func.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state =>({
@@ -243,4 +247,4 @@ const mapStateToProps = state =>({
     profile: state.profile
 })
 
-export default connect(mapStateToProps, { getCurrentProfile })(withRouter(Dashboard))
+export default connect(mapStateToProps, { loadUser, getCurrentProfile })(withRouter(Dashboard))
