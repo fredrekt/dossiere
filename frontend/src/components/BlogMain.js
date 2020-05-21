@@ -12,7 +12,7 @@ const BlogMain = props => {
             <MDBView className="rounded z-depth-2 mb-lg-0 mb-4" hover waves>
               <img
                 className="img-fluid"
-                src="https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg"
+                src={!post.topic ? "https://mdbootstrap.com/img/Photos/Others/img%20(27).jpg" : post.topic === 'Programming' ? "https://mdbootstrap.com/img/Photos/Others/images/31.jpg": post.topic === 'News' ? "https://mdbootstrap.com/img/Photos/Others/images/52.jpg" : "https://mdbootstrap.com/img/Photos/Others/images/49.jpg"}
                 alt=""
               />
               <a href="#!">
@@ -47,7 +47,7 @@ const BlogMain = props => {
               <Link className="white-text" to={`/blog/${post._id}`}>Read more</Link>
             </MDBBtn>
           </MDBCol>
-          <hr className="my-5" />
+          {/* <hr className="my-5" /> */}
         </MDBRow>
     )
     return (
