@@ -1,6 +1,6 @@
 import React from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact'
-import think from '../../../img/thinking-vector.jpg'
+import think from '../../../img/thinking.gif'
 
 
 const AboutSection = (props) => {
