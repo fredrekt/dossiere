@@ -39,6 +39,11 @@ import NavigationBar from './components/NavigationBar';
 //main page 
 import MainComponent from './components/NavigationBar'
 
+//new profile
+import NewProfile from './components/Admin/Profile'
+import ProfileModal from './components/ProfileModal';
+import Landing from './components/LandingPage/Landing';
+
 // set token - to get accepted
 if(localStorage.token){
   setAuthToken(localStorage.token)
@@ -51,24 +56,27 @@ const App = () => {
   return (
     <Provider store={store}> 
       <Router>   
+        {/* <Route exact path="/landing-page" component={Landing}/> */}
         <MainComponent/>
         <Alert/>
         <>
+        {/* Modal Add Experience && Add skills */}
+        <Route exact path="/profilemodal" component={ProfileModal}/>
         <Route exact path="/mainpage" component={NavigationBar}/>
-        <Route exact path="/login" component={Login}/>
-
+        {/* <Route exact path="/login" component={Login}/> */}
+        <Route exact path="/newprofile" component={NewProfile}/>
         <Route exact path="/blog/1" component={SingleBlog}/>
         {/* Book Blog */}
         <Route exact path="/blog/2" component={SplitBlogPage}/>
         {/* Picture Blog */}
         {/* Selected Blog - Request Params - use url parameter */}
-        <Route exact path="/blog/3" component={BlogPageCarousel}/>
+        {/* <Route exact path="/blog/:id" component={BlogPageCarousel}/><Route exact path="/blog/:id" component={BlogPageCarousel}/> */}
         {/* Article Blog */}
         <Route exact path="/blog/4" component={CustomBlog}/>
         {/* 404 Page/ Page Not Found */}
         {/* <Route path="/*" component={MissingPage}/> */}
-        <MDBContainer style={{ marginBottom: "10%" }}>
-          <Route exact path="/blog" component={BlogPage}/>
+        <MDBContainer style={{ marginBottom: "0%" }}>
+          {/* <Route exact path="/blog" component={BlogPage}/> */}
           <Route exact path="/blog-gridview" component={BlogGridView}/>
           <Route exact path="/blog-columnview" component={BlogColumnView}/>
           <Route exact path="/blog-allviews" component={CombinedGridView}/>     
@@ -79,11 +87,10 @@ const App = () => {
         {/* <Route exact="/" component={SplitBlogPage}/> */}
         <PrivateRoute exact path="/admin" component={SideNav}/>            
         <Route exact path="/comments" component={Comments}/>
-        <Route exact path="/register" component={Register}/>
+        {/* <Route exact path="/register" component={Register}/> */}
         <Route exact path="/b" component={Breadcrumbs}/>
-        <Route exact path="/profile" component={Profile}/>
-        <Route exact path="/create-post" component={CreatePost}/>
-        <Route exact path="/active-posts" component={ActivePosts}/>
+        {/* <Route exact path="/profile" component={Profile}/>
+        <Route exact path="/create-post" component={CreatePost}/> */}
         </>
       </Router>
       {/* <MDBContainer>
