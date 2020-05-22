@@ -113,7 +113,7 @@ const HowItWorks = () => {
                 </MDBRow>
                 </MDBContainer>
             </MDBContainer>
-            </Slide>
+        </Slide>
         </>
     )
 }
