@@ -2,6 +2,7 @@ import React from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBView, MDBMask, MDBBtn, MDBIcon } from 'mdbreact'
 import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
+import Slide from 'react-reveal'
 
 const BlogMain = props => {
     const data = props.data
@@ -43,17 +44,21 @@ const BlogMain = props => {
                 <Moment format="MMM DD, YYYY">{post.date}</Moment>
               </div>
             </div>
-            <MDBBtn color="success" size="md" className="waves-light ml-0 mt-4">
-              <Link className="white-text" to={`/blog/${post._id}`}>Read more</Link>
-            </MDBBtn>
+            <Link className="white-text" to={`/blog/${post._id}`}>
+              <MDBBtn color="success" size="md" className="waves-light ml-0 mt-4">
+                Read more
+              </MDBBtn>
+            </Link>
           </MDBCol>
           {/* <hr className="my-5" /> */}
         </MDBRow>
     )
     return (
-        <div>
+      <>
+        <Slide cascade slide bottom>
             {blogData}
-        </div>
+        </Slide>
+      </>
     )
 }
 
