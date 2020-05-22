@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createAccount } from '../../../actions/auth'
 import { setAlert } from '../../../actions/alert'
-
+import Flip from 'react-reveal/Flip'
 
 const Register = ({ createAccount, setAlert }) => {
 
@@ -47,7 +47,7 @@ const Register = ({ createAccount, setAlert }) => {
     }
 
     return (
-        <MDBAnimation type="slideInRight" reveal>
+        <Flip left>
         <MDBContainer style={{'margin-top':'13%', marginBottom: "5%" }}>
         <MDBRow>
             <MDBCol md="6">
@@ -111,7 +111,7 @@ const Register = ({ createAccount, setAlert }) => {
             </MDBCol>
         </MDBRow>
       </MDBContainer>
-      </MDBAnimation>
+      </Flip>
     )
 }
 
