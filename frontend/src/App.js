@@ -24,6 +24,8 @@ import CombinedGridView from './components/CombinedGridView';
 import CustomBlog from './components/CustomBlog';
 import MissingPage from './components/MissingPage'
 import Alert from './components/Alert'
+import ArchivedPosts from './components/Admin/ManagePosts/ArchivedPosts'
+import PostAnalytics from './components/Admin/ManagePosts/PostAnalytics'
 import PrivateRoute from './components/routing/PrivateRoute'
 //Redux
 import { Provider } from 'react-redux'
@@ -44,65 +46,43 @@ import NewProfile from './components/Admin/Profile'
 import ProfileModal from './components/ProfileModal';
 import Landing from './components/LandingPage/Landing';
 
+
+//portfolio route
+import Portfolio from './components/Client/Home'
+import ContactHelp from './components/Admin/Help/ContactHelp';
+
 // set token - to get accepted
 if(localStorage.token){
   setAuthToken(localStorage.token)
 }
 
 const App = () => {
+
   useEffect(()=>{
     store.dispatch(loadUser())
   }, [])
+
   return (
     <Provider store={store}> 
-      <Router>   
-        {/* <Route exact path="/landing-page" component={Landing}/> */}
+      <Router> 
+        {/* {localStorage.hasOwnProperty('token') ? <SideNav/> : <Navbar/>}   */}
+        {/* <Navbar/> */}
+        {/* <SideNav/> */}
         <MainComponent/>
         <Alert/>
+        <Route exact path="/" component={Landing}/>   
+        <PrivateRoute exact path="/admin" component={SideNav}/> 
         <>
-        {/* Modal Add Experience && Add skills */}
-        <Route exact path="/profilemodal" component={ProfileModal}/>
-        <Route exact path="/mainpage" component={NavigationBar}/>
-        {/* <Route exact path="/login" component={Login}/> */}
-        <Route exact path="/newprofile" component={NewProfile}/>
-        <Route exact path="/blog/1" component={SingleBlog}/>
-        {/* Book Blog */}
-        <Route exact path="/blog/2" component={SplitBlogPage}/>
-        {/* Picture Blog */}
-        {/* Selected Blog - Request Params - use url parameter */}
-        {/* <Route exact path="/blog/:id" component={BlogPageCarousel}/><Route exact path="/blog/:id" component={BlogPageCarousel}/> */}
-        {/* Article Blog */}
-        <Route exact path="/blog/4" component={CustomBlog}/>
-        {/* 404 Page/ Page Not Found */}
-        {/* <Route path="/*" component={MissingPage}/> */}
-        <MDBContainer style={{ marginBottom: "0%" }}>
-          {/* <Route exact path="/blog" component={BlogPage}/> */}
-          <Route exact path="/blog-gridview" component={BlogGridView}/>
-          <Route exact path="/blog-columnview" component={BlogColumnView}/>
-          <Route exact path="/blog-allviews" component={CombinedGridView}/>     
-        </MDBContainer>
-        {/* Blog Main Page */}
-        <Route exact path="/lightbox" component={LightboxPage}/>
-        {/* <Footer/> */}
-        {/* <Route exact="/" component={SplitBlogPage}/> */}
-        <PrivateRoute exact path="/admin" component={SideNav}/>            
-        <Route exact path="/comments" component={Comments}/>
-        {/* <Route exact path="/register" component={Register}/> */}
-        <Route exact path="/b" component={Breadcrumbs}/>
-        {/* <Route exact path="/profile" component={Profile}/>
-        <Route exact path="/create-post" component={CreatePost}/> */}
+          {/* Client View  */}
+          <MDBContainer style={{ marginBottom: "10%", marginTop: "10%" }}>
+            <Route exact path="/login" component={Login}/>        
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/blog" component={BlogPage}/>      
+            <Route exact path="/blog/:id" component={BlogPageCarousel}/> 
+            <Route exact path="/portfolio" component={Portfolio}/> 
+          </MDBContainer> 
         </>
       </Router>
-      {/* <MDBContainer>
-        <BlogPage/>
-      </MDBContainer> */}
-      {/* <MDBContainer>
-        <SingleBlog/>
-      </MDBContainer> */}
-      {/* <Footer/> */}
-      {/* <Dashboard/> */}
-      {/* <SplitBlogPage/> */}
-      {/* <Login/> */}
     </Provider>
   );
 }
