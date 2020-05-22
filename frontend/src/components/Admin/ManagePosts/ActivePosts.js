@@ -73,9 +73,11 @@ const ActivePosts = ({ getPosts, post: { posts, loading } }) => {
                             </p>
                         </div>
                         <div>
+                          <Link className="white-text" to="/create-post"> 
                             <MDBBtn color="danger" onClick={()=>setShow(false)} size="sm">
-                              <Link className="white-text" to="/create-post">  i understand </Link>
+                              i understand 
                             </MDBBtn>
+                          </Link>
                         </div>
                     </MDBContainer>
                 </MDBModalBody>
