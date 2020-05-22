@@ -11,8 +11,8 @@ import Login from '../Admin/auth/Login'
 import Register from '../Admin/auth/Register'
 import Portfolio from './Home'
 
+// ================= THIS IS OBSOLETE ===============
 // Application Visitor/Client 
-
 
 const App = () => {
     return (
@@ -20,15 +20,13 @@ const App = () => {
             <Router>
                 <Navbar/>
                 <Switch>
-                    <Route exact path="/" component={Landing}/>   
-                    <Route exact path="/portfolio" component={Portfolio}/>            
+                    {/* <Route exact path="/" component={Landing}/>   
+                    <Route exact path="/portfolio" component={Portfolio}/>             */}
                     <MDBContainer style={{ marginBottom: "10%", marginTop: '10%' }}>
-                        {/* Import path for the blogs  */}
-                        {/* <Route exact path="/blog-gridview" component={BlogGridView}/> */}
-                        <Route exact path="/blog" component={BlogPage}/>      
-                        <Route exact path="/blog/:id" component={BlogPageCarousel}/> 
-                        <Route exact path="/login" component={Login}/>
-                        <Route exact path="/register" component={Register}/>  
+                        {/* <Route exact path="/blog" component={BlogPage}/>      
+                        <Route exact path="/blog/:id" component={BlogPageCarousel}/>  */}
+                        {/* <Route exact path="/login" component={Login}/>
+                        <Route exact path="/register" component={Register}/>   */}
                     </MDBContainer> 
                 </Switch>
             </Router>
