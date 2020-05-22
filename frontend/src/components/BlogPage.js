@@ -6,6 +6,7 @@ import axios from 'axios'
 import BlogMain from './BlogMain';
 import loadspinner from '../img/working-construction.json'
 import Lottie from 'lottie-react-web'
+import Slide from 'react-reveal'
 
 class BlogPage extends Component{
   constructor(props) {
@@ -41,12 +42,13 @@ class BlogPage extends Component{
         </div>
         </>
         :(
-            <>
-            <Breadcrumbs
-                bcrumbs_color="white"
-                bcrumbs_header="My Blogs"
-                bcrumbs_current="Blogs"
-              />
+        <>
+        <Slide cascade slide bottom>
+        <Breadcrumbs
+            bcrumbs_color="white"
+            bcrumbs_header="My Blogs"
+            bcrumbs_current="Blogs"
+          />
         <hr style={{ marginTop:'-2%' }} className="mb-4" width="10%"/>
         <p className="text-center w-responsive mx-auto mb-5">
           Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -54,8 +56,8 @@ class BlogPage extends Component{
           cupidatat non proident, sunt in culpa qui officia deserunt mollit
           anim id est laborum.
         </p>
+        </Slide>
         <BlogMain data={posts}/>
-        {/* <hr className="my-5" /> */}
         </>
         )
     }
