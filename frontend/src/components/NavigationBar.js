@@ -9,7 +9,7 @@ import App from './Client/App'
 
 
 const NavigationBar = ({ auth: { isAuthenticated, loading } }) => {
-    const guestNavbar = <App/>
+    const guestNavbar = <Navbar/>
     const adminNavbar = ( <Redirect to="/admin" />)
     return (
         <>
