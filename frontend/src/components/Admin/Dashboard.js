@@ -163,11 +163,9 @@ const Dashboard = ({ loadUser, getCurrentProfile, auth: { user }, profile: { pro
                                         This article of yours is the highlight of the month! Many viewers and comments and 
                                         human computer interaction.
                                     </p>
-                                    <div>
-                                        <BlogMain
-                                            data={highlightArticle}
-                                        />
-                                    </div>
+                                    {/* <>
+                                        <BlogMain data={highlightArticle}/>
+                                    </> */}
                                 </MDBContainer>
                             </MDBCardBody>
                         </MDBCard>
