@@ -26,7 +26,7 @@ const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
     // }
     
     return(
-        <BrowserRouter>
+    <BrowserRouter>
         <SideNav 
         style={{'background':'elegant-color', 'height': '100%', position: 'fixed'}}
     onSelect={(selected) => {
@@ -116,13 +116,14 @@ const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
     </SideNav.Nav>
 </SideNav>
 <Switch>
+    {/* Admin View */}
     <MDBContainer style={{ marginTop: '-5%', marginLeft:'20%', marginBottom: "5%" }}>
         <PrivateRoute exact path="/admin" component={Dashboard}/>
         <PrivateRoute exact path="/create-post" component={CreatePost}/>
         <PrivateRoute exact path="/active-posts" component={ActivePosts}/>
-        <Route exact path="/analytics-posts" component={PostAnalytics}/>
-        <Route exact path="/archived-posts" component={ArchivedPosts}/>
-        <Route exact path="/contact-help" component={ContactHelp}/>
+        <PrivateRoute exact path="/analytics-posts" component={PostAnalytics}/>
+        <PrivateRoute exact path="/archived-posts" component={ArchivedPosts}/>
+        <PrivateRoute exact path="/contact-help" component={ContactHelp}/>
         <PrivateRoute exact path="/profile" component={NewProfile}/>
     </MDBContainer>
 </Switch>
