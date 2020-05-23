@@ -7,6 +7,7 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav,
 import logo from '../img/logo-black.JPG'
 import Lottie from 'lottie-react-web'
 import pageConstruction from '../img/page-construction.json'
+import emailSent from '../img/newsletter-email-sent.json'
 
 class FullPageIntroWithFixedTransparentNavbar extends Component {
   constructor(props) {
@@ -18,7 +19,9 @@ class FullPageIntroWithFixedTransparentNavbar extends Component {
       isWideEnough: false,
       active: false,
       active2: false,
-      active3: false
+      active3: false,
+      doneEmail: false,
+      email: ''
     };
     this.onClick = this.onClick.bind(this);
   }
@@ -51,6 +54,7 @@ class FullPageIntroWithFixedTransparentNavbar extends Component {
   }
   
   render() {
+    const doneEmail = this.state.doneEmail+939
     return (
       <>
         <header>
@@ -94,7 +98,7 @@ class FullPageIntroWithFixedTransparentNavbar extends Component {
       <MDBContainer>
       <MDBModal isOpen={this.state.modal} toggle={this.toggle} centered>
         <MDBModalBody>
-          <div className="p-5">
+          <div style={{ display: !this.state.doneEmail ? 'inline-block' : 'none' }} className="p-5">
             <div className="text-center">
               <div>
                 <h4 className="h4-responsive font-weight-bold">
@@ -107,15 +111,39 @@ class FullPageIntroWithFixedTransparentNavbar extends Component {
                   exclusive offers every week. No spam
                 </p>
               </div>
-              <div>
-                <MDBInput label="Enter your email"/>
-              </div>
-              <div>
-                <button className="newsletter-subscription-button z-depth-1">Subscribe</button>
-              </div>
+              <form onSubmit={(e)=>{
+                e.preventDefault()
+                this.setState({ doneEmail: true })
+                //function code from backend
+              }}>
+                <div>
+                  <MDBInput name="email" value={this.state.email} onChange={(e)=>this.setState({email: e.target.value })}label="Enter your email"/>
+                </div>
+                <div>
+                  <button type="submit" className="newsletter-subscription-button z-depth-1">Subscribe</button>
+                </div>
+              </form>
               <div className="newsletter-cancel">
                 <a type="button" className="black-text" onClick={this.toggle}>No Thanks</a>
               </div>
+            </div>
+          </div>
+          <div style={{ display: this.state.doneEmail ? 'inline': 'none' }}>
+            <Lottie
+              options={{
+                animationData: emailSent
+              }}
+              height="200px"
+            />
+            <div className="text-center p-5">
+              <h4 className="h4-responsive font-weight-bold">
+                You've already subscribed!
+              </h4>
+              <p className="grey-text">
+                We're glad you're interested in Dossiere! We'll let you know when we 
+                have new updates & news.
+              </p>
+              <button onClick={this.toggle} className="newsletter-subscription-button z-depth-1">back to dossiere</button>
             </div>
           </div>
         </MDBModalBody>
