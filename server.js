@@ -12,6 +12,9 @@ const app = express()
 //connect to mongodb
 connectDB()
 
+//storing image files folder
+app.use( '/uploads', express.static('uploads'))
+
 //initialize middleware
 app.use(express.json({ extended: false }))
 // remove for deployment

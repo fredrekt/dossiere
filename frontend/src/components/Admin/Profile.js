@@ -466,7 +466,7 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                             (
                             <>
                                 <div style={{ width: "200%" }}>
-                                    <MDBInput style={{ width: "100%" }} outline type="text" label="Add Image " />
+                                    <MDBInput style={{ width: "100%" }} outline type="file" label="Add Image " />
                                 </div>
                             </>
                             )

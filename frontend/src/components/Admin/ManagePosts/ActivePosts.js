@@ -43,7 +43,7 @@ const ActivePosts = ({ getPosts, post: { posts, loading } }) => {
   }
   ]
 
-  return loading ? 
+  return loading || posts === null ? 
     ( 
     <>
       loading
