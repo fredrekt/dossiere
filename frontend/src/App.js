@@ -72,6 +72,7 @@ const App = () => {
         <Alert/>
         <Route exact path="/" component={Landing}/>   
         <PrivateRoute exact path="/admin" component={SideNav}/> 
+        <Route exact path="/portfolio" component={Portfolio}/> 
         <>
           {/* Client View  */}
           <MDBContainer style={{ marginBottom: "10%", marginTop: "10%" }}>
@@ -79,7 +80,6 @@ const App = () => {
             <Route exact path="/register" component={Register}/>
             <Route exact path="/blog" component={BlogPage}/>      
             <Route exact path="/blog/:id" component={BlogPageCarousel}/> 
-            <Route exact path="/portfolio" component={Portfolio}/> 
           </MDBContainer> 
         </>
       </Router>
