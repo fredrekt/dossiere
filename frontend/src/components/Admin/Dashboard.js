@@ -114,6 +114,61 @@ const Dashboard = ({ loadUser, getCurrentProfile, auth: { user }, profile: { pro
                         </MDBCard>
                     </MDBCol>
                 </MDBRow>
+                <MDBRow style={{ marginTop: "5%" }}>
+                    <MDBCol md="12">
+                        <MDBCard>
+                            <MDBCardBody>
+                                <MDBContainer>
+                                    <h3>
+                                        <MDBProgress animated preloader value={80} className="my-2" />
+                                    </h3>
+                                    <p className="grey-text">
+                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                    </p>
+                                    <MDBRow className="mt-5 mb-5">
+                                        <hr className="my-5" />
+                                        <MDBCol lg="5">
+                                            <MDBCard>
+                                                <MDBCardBody>
+                                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                                    <MDBProgress animated preloader value={80} className="my-2" />
+                                                </MDBCardBody>
+                                            </MDBCard>
+                                        </MDBCol>
+                                        <MDBCol lg="7">
+                                            <a href="#!" className="green-text">
+                                            <h6 className="font-weight-bold mb-3">
+                                                <MDBProgress animated preloader value={80} className="my-2" />
+                                            </h6>
+                                            </a>
+                                            <h3 className="font-weight-bold mb-3 p-0">
+                                            <strong>
+                                                <MDBProgress animated preloader value={80} className="my-2" />
+                                            </strong>
+                                            </h3>
+                                        
+                                            <p class="blog-post-content">
+                                                <MDBProgress animated preloader value={80} className="my-2" />
+                                                <MDBProgress animated preloader value={80} className="my-2" />
+                                                <MDBProgress animated preloader value={80} className="my-2" />
+                                                <MDBProgress animated preloader value={80} className="my-2" />
+                                            </p>
+                                        </MDBCol>
+                                    </MDBRow>
+                                </MDBContainer>
+                            </MDBCardBody>
+                        </MDBCard>
+                    </MDBCol>
+                </MDBRow>
             </MDBContainer>
         </>
         )
