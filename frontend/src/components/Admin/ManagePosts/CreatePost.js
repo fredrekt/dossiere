@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { MDBContainer, MDBRow, MDBCol, 
     MDBCard, MDBCardBody, MDBCardText, MDBInput, 
-    MDBBtn, MDBIcon } from 'mdbreact'
+    MDBBtn, MDBIcon, MDBModal, MDBModalBody } from 'mdbreact'
 import AdminTitle from '../../AdminTitle'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { createPost } from '../../../actions/post'
+import { Redirect } from 'react-router-dom'
+import Lottie from 'lottie-react-web'
+import pageConstruction from '../../../img/page-construction.json'
 
-const CreatePost = ({ createPost }) => {
+const CreatePost = ({ createPost, posts, loading, history }) => {
 
     const [ formData, setFormData ] = useState({
         title: '',
@@ -17,6 +20,8 @@ const CreatePost = ({ createPost }) => {
         sectionTitle: '',
         sectionContent: ''
     })
+
+    const [ show, setShow ] = useState(false)
 
     const [ Btn, setBtn ] = useState('Publish Article')
 
@@ -37,15 +42,31 @@ const CreatePost = ({ createPost }) => {
         <MDBContainer className="create-post-container z-depth-2 p-5">
             <form onSubmit={(e)=>{ 
                 e.preventDefault()
-                createPost(formData)
                 setBtn(
                     <div className="spinner-border spinner-border-sm" role="status">
                         <span className="sr-only">Loading...</span>
                     </div>
                 ) 
+                createPost(formData, history)
+                if(posts.error !== null ){
+                    setTimeout(() =>{
+                        setBtn('Publish Article')
+                    },1000)
+                }
+                else{
                 setTimeout(() =>{
                     setBtn('Publish Article')
+                    setFormData({
+                        title: title.length < 0 ? '': title,
+                        topic: 'Choose your topic',
+                        content: content.length < 0 ? '' : content,
+                        section: '',
+                        sectionTitle: '',
+                        sectionContent: ''
+                    })
                 },3000)
+                }
+
                 }}>
             <h2>
                 Select a preview    
@@ -55,7 +76,7 @@ const CreatePost = ({ createPost }) => {
             </p>
             <MDBRow>
                 <MDBCol md="3">
-                    <a href="#!">
+                    <a onClick={()=>setShow(true)}>
                         <input type="radio"/>
                         <MDBCard className="card-hover">
                             <MDBCardBody>
@@ -67,7 +88,7 @@ const CreatePost = ({ createPost }) => {
                     </a>
                 </MDBCol>
                 <MDBCol md="3">
-                    <a target="_blank" href="#preview2">
+                    <a onClick={()=>setShow(true)}>
                         <MDBCard className="card-hover">
                             <MDBCardBody>
                                 <MDBCardText>
@@ -78,7 +99,7 @@ const CreatePost = ({ createPost }) => {
                     </a>
                 </MDBCol>
                 <MDBCol md="3">
-                    <a target="_blank" href="#preview3">
+                    <a onClick={()=>setShow(true)}>
                         <MDBCard className="card-hover">
                             <MDBCardBody>
                                 <MDBCardText>
@@ -109,6 +130,7 @@ const CreatePost = ({ createPost }) => {
                     </div>
                     <div className="w-100">
                         <select name="topic" value={topic} onChange={(e)=>onChange(e)} className="browser-default custom-select">
+                            <option>Choose your topic</option>
                             <option value="Blog">Blog</option>
                             <option value="News">News</option>                    
                             <option value="Showcase">Showcase</option>
@@ -122,7 +144,7 @@ const CreatePost = ({ createPost }) => {
             </MDBRow>
             <MDBRow>
                 <MDBCol md="9">
-                    <MDBInput name="content" value={content} onChange={(e)=>onChange(e)} type="textarea" label="Write your article content" rows="10" />
+                    <MDBInput style={{ overflowY: "auto" }} name="content" value={content} onChange={(e)=>onChange(e)} type="textarea" label="Write your article content" rows="10" />
                 </MDBCol>
             </MDBRow>
             {/* <div class="custom-control custom-checkbox">
@@ -147,7 +169,7 @@ const CreatePost = ({ createPost }) => {
                     </select>
                 </MDBCol>
                 <MDBCol md="3">
-                    <MDBBtn size="sm" className="mt-1">
+                    <MDBBtn onClick={()=>setShow(true)} size="sm" className="mt-1">
                         +
                     </MDBBtn>
                 </MDBCol>
@@ -167,13 +189,50 @@ const CreatePost = ({ createPost }) => {
             </MDBBtn>
             </form>
         </MDBContainer>
+
+              
+      <MDBContainer>
+        <MDBModal isOpen={show} toggle={()=>setShow(!show)} centered>
+            <MDBModalBody>
+            <div className="p-5">
+                <div className="text-center">
+                <div>
+                    <Lottie
+                    options={{
+                        animationData: pageConstruction
+                    }}
+                    />
+                </div>
+                <div>
+                    <p className="grey-text">
+                    This Feature is under construction & not yet finished, still preparing it. Please bear with us.
+                    </p>
+                </div>
+                <div>
+                    <button onClick={()=>setShow(!show)} className="newsletter-subscription-button z-depth-1">I understand</button>
+                </div>
+                </div>
+            </div>
+            </MDBModalBody>
+        </MDBModal>
+      </MDBContainer>
+
     </>
     )
 }
 
 CreatePost.propTypes = {
-    createPost: PropTypes.func.isRequired
+    createPost: PropTypes.func.isRequired,
+    posts: PropTypes.object.isRequired,
+    loading: PropTypes.bool,
+    error: PropTypes.object.isRequired
 }
 
+const mapStateToProps = state => ({
+    posts: state.post.posts,
+    loading: state.post.loading,
+    error: state.post.error
+})
 
-export default connect(null, { createPost })(CreatePost)
+
+export default connect(mapStateToProps, { createPost })(CreatePost)
