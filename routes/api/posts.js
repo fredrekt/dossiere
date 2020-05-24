@@ -100,7 +100,8 @@ route.post('/', [auth,
     check('topic', 'A Topic is required')
     .not()
     .isEmpty(),
-    check('content', 'Content are required')
+    check('content', 'Article content should over be a thousand characters!')
+    .isLength({ min: 1000 })
     .not()
     .isEmpty()
 ]], 
