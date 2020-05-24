@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 import { getPosts } from '../../../actions/post'
 import Tables from './tables/Tables';
 import error from '../../../img/binoculars-vector.jpg'
+import TableLoader from './tables/loaderTable';
 
 const ActivePosts = ({ getPosts, post: { posts, loading } }) => {
 
@@ -43,11 +44,25 @@ const ActivePosts = ({ getPosts, post: { posts, loading } }) => {
   }
   ]
 
+  const loadingAdminTitle = [{
+    id:99,
+    title: "The text is still loading bear with us for a while.",
+    topic: "Programming",
+    className : "mt-2 ml-1",
+    icon : "",
+    subTitle: <>
+                <MDBProgress animated preloader value={80} className="my-2" />
+            </>,
+  }]
+
   return loading ? 
     ( 
-    <>
-      loading
-    </> 
+    <div style={{ marginTop: "0%" }}>
+      <AdminTitle adminTitle={loadingAdminTitle}/>
+      <MDBContainer style={{ marginLeft: '-18%', marginTop: '-10%' }}>
+        <TableLoader/>
+      </MDBContainer>
+    </div> 
     ) 
     : 
     (
