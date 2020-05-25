@@ -5,6 +5,7 @@ import cms from '../../img/features-content.json'
 import writer from '../../img/features-writer.json'
 import Lottie from 'lottie-react-web'
 import Slide from 'react-reveal'
+import { Link } from 'react-router-dom'
 
 const Features = () => {
 
@@ -48,7 +49,7 @@ const Features = () => {
                             of your computer's hard drive. The cloud is just a metaphor for the Internet. The cloud is also not about having 
                             a dedicated network attached storage (NAS) hardware or server in residence
                             </h6>
-                            <button className="landing-features-button z-depth-1 mt-3">get started</button>
+                            <a href="https://en.wikipedia.org/wiki/Cloud_computing" className="landing-features-button z-depth-1 mt-3">learn more</a>
                             </MDBContainer>
                         </MDBCol>
                     </MDBRow>
@@ -65,7 +66,9 @@ const Features = () => {
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae eum asperiores sed dolores doloribus.
                             </h6>
-                            <button className="landing-features-button z-depth-1 mt-3">compose article</button>
+                            <Link clasName="white-text" to="/blog">
+                                <button className="landing-features-button z-depth-1 mt-3">read articles</button>
+                            </Link>
                             </MDBContainer>
                         </MDBCol>
                         <MDBCol md="7">
@@ -97,7 +100,7 @@ const Features = () => {
                                 publishing of information in any form or medium. When stored and accessed via computers, this information 
                                 may be more specifically referred to as digital content, or simply as content.
                             </h6>
-                            <button className="landing-features-button z-depth-1 mt-3">start managing</button>
+                            <a href="https://en.wikipedia.org/wiki/Content_management" className="landing-features-button z-depth-1 mt-3">more about system</a>
                             </MDBContainer>
                         </MDBCol>
                     </MDBRow>
