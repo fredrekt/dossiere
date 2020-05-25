@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login } from '../../../actions/auth'
 import PropTypes from 'prop-types'
-import Flip from 'react-reveal/Flip'
+import Slide from 'react-reveal'
 
 const Login = ({ login, isAuthenticated }) => {
 
@@ -49,7 +49,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
       <>
-      <Flip right>
+      <Slide cascade slide bottom>
       <MDBContainer style={{'margin-top':'20%'}}>
         <MDBRow>
             <MDBCol md="6">
@@ -96,7 +96,7 @@ const Login = ({ login, isAuthenticated }) => {
                 </MDBCol>
         </MDBRow>
       </MDBContainer>
-      </Flip>
+      </Slide>
       </>
   );
 };
