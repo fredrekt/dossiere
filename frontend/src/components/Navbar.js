@@ -74,7 +74,7 @@ class FullPageIntroWithFixedTransparentNavbar extends Component {
                     <MDBNavLink to="/blog">Articles</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem className="nav-item" onClick={()=>console.log("clicked about")} >
-                    <MDBNavLink onClick={this.toggle2} to="#">Information</MDBNavLink>
+                    <MDBNavLink to="/dossiers">Dossier Profiles</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem className="nav-item" onClick={()=>console.log("clicked subscribe")} >
                     <MDBNavLink onClick={this.toggle2} to="#">Services</MDBNavLink>
