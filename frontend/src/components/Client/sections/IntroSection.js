@@ -15,7 +15,7 @@ const IntroSection = (props) => {
                            </h4>
                            <Typing loop>
                                 <h1 className="porfolio-header">    
-                                    I'm a Full Stack Developer
+                                    {props.status ? `I'm a ${props.status}` : "I'm a Full Stack Developer"}
                                 </h1>
                                 <Typing.Backspace count={26} />
                             </Typing>

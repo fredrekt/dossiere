@@ -9,17 +9,34 @@ import PartnershipSection from './sections/PartnershipSection'
 import scrollToComponent from 'react-scroll-to-component';
 import { MDBAnimation } from 'mdbreact'
 import GetInTouchSection from './sections/GetInTouchSection'
+import axios from 'axios'
 
 class Home extends Component{
-    componentDidMount() {
+    constructor(props) {
+        super(props)
+        this.state = {
+            profile: []
+        }
+    }
+    async componentDidMount() {
         scrollToComponent(this.introSection, { offset: 0, align: 'middle', duration: 1000, ease:'inCirc'});
+        try {
+            const res = await fetch(`/api/profile/user/${this.props.match.params.id}`)
+            const json = await res.json()
+            this.setState({ profile: json })
+        } 
+        catch (err) {
+            console.log(err)
+        }
     }
     render(){
+      
     return (
         <>
            <MDBAnimation type="slideInUp">
            <section ref={(section) => { this.introSection = section; }}>
            <IntroSection 
+                status={this.state.profile.status}
                 porfolioOnclick={()=>scrollToComponent(this.portfolioSection, { offset: 0, align: 'middle', duration: 1000 })}
                 moreOnclick={() => scrollToComponent(this.aboutSection, { offset: 0, align: 'bottom', duration: 1000})}/>
            </section>
