@@ -50,6 +50,8 @@ import Landing from './components/LandingPage/Landing';
 //portfolio route
 import Portfolio from './components/Client/Home'
 import ContactHelp from './components/Admin/Help/ContactHelp';
+import UserProfiles from './components/Client/UserProfiles';
+import Profiles from './components/Client/Profiles';
 
 // set token - to get accepted
 if(localStorage.token){
@@ -71,11 +73,12 @@ const App = () => {
         <MainComponent/>
         <Alert/>
         <Route exact path="/" component={Landing}/>   
-        <PrivateRoute exact path="/admin" component={SideNav}/> 
-        <Route exact path="/portfolio" component={Portfolio}/> 
+        <PrivateRoute exact path="/admin" component={SideNav}/>
+        <Route exact path="/portfolio/:id" component={Portfolio}/> 
         <>
           {/* Client View  */}
           <MDBContainer style={{ marginBottom: "10%", marginTop: "10%" }}>
+            <Route exact path="/dossiers" component={Profiles}/> 
             <Route exact path="/login" component={Login}/>        
             <Route exact path="/register" component={Register}/>
             <Route exact path="/blog" component={BlogPage}/>      
