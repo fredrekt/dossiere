@@ -10,7 +10,7 @@ import { getAllProfiles } from '../../actions/profile'
 import Lottie from 'lottie-react-web'
 import loadingProfiles from '../../img/paper-boat-loading.json'
 
-const Profiles = ({ getAllProfiles, profile: { profile, loading } }) => {
+const Dossiers = ({ getAllProfiles, profile: { profile, loading } }) => {
 
     useEffect(()=>{
         getAllProfiles()
@@ -108,7 +108,7 @@ const Profiles = ({ getAllProfiles, profile: { profile, loading } }) => {
     )
 }
 
-Profiles.propTypes = {
+Dossiers.propTypes = {
     getAllProfiles: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired
 }
@@ -117,4 +117,4 @@ const mapStateToProps = state => ({
     profile: state.profile
 })
 
-export default connect(mapStateToProps, { getAllProfiles })(Profiles)
+export default connect(mapStateToProps, { getAllProfiles })(Dossiers)
