@@ -51,7 +51,7 @@ import Landing from './components/LandingPage/Landing';
 import Portfolio from './components/Client/Home'
 import ContactHelp from './components/Admin/Help/ContactHelp';
 import UserProfiles from './components/Client/UserProfiles';
-import Profiles from './components/Client/Profiles';
+import Dossiers from './components/Client/Dossiers';
 
 // set token - to get accepted
 if(localStorage.token){
@@ -78,7 +78,7 @@ const App = () => {
         <>
           {/* Client View  */}
           <MDBContainer style={{ marginBottom: "10%", marginTop: "10%" }}>
-            <Route exact path="/dossiers" component={Profiles}/> 
+            <Route exact path="/dossiers" component={Dossiers}/> 
             <Route exact path="/login" component={Login}/>        
             <Route exact path="/register" component={Register}/>
             <Route exact path="/blog" component={BlogPage}/>      
