@@ -26,7 +26,7 @@ const AboutSection = (props) => {
                         <div className="about-content">
                             <div className="about-content-title">
                                 <h3>
-                                Why you hire me as a developer for your project?
+                                Why hire me for your project?
                                 </h3>
                             </div>
                             <div className="about-content-description mt-4">
