@@ -20,7 +20,7 @@ const IntroSection = (props) => {
                                 <Typing.Backspace count={26} />
                             </Typing>
                                 <p className="portfolio-content">
-                                    About yourself dolor sit Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    My name is {props.name ? props.name : 'not available'}, i currently live in {props.location ? props.location : 'location not available'}. 
                                 <br/>Donec vel dui lectus. Developer at heart and soul loves to watch netflix and develop shit.
                                 </p>
                             <div>
