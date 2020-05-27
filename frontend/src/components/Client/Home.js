@@ -9,7 +9,8 @@ import PartnershipSection from './sections/PartnershipSection'
 import scrollToComponent from 'react-scroll-to-component';
 import { MDBAnimation } from 'mdbreact'
 import GetInTouchSection from './sections/GetInTouchSection'
-import axios from 'axios'
+import Lottie from 'lottie-react-web'
+import portfolioGenerate from '../../img/coding-loading.json'
 
 class Home extends Component{
     constructor(props) {
@@ -30,13 +31,29 @@ class Home extends Component{
         }
     }
     render(){
-      
-    return (
+      const profile = this.state.profile 
+    return profile.length === 0 ? 
+    <div style={{ marginTop: '10%' }}>
+        <Lottie 
+            options={{
+                animationData: portfolioGenerate
+            }}
+            width="25%"
+            height="25%"
+        />
+        <div style={{ marginTop: "0" }} className="text-center grey-text">
+            This will take a second, fetching data to generate digital portfolio...
+      </div>
+    </div> 
+    : 
+    (
         <>
            <MDBAnimation type="slideInUp">
            <section ref={(section) => { this.introSection = section; }}>
            <IntroSection 
                 status={this.state.profile.status}
+                name={`${this.state.profile.firstname} ${this.state.profile.lastname}`}
+                location={this.state.profile.location}
                 porfolioOnclick={()=>scrollToComponent(this.portfolioSection, { offset: 0, align: 'middle', duration: 1000 })}
                 moreOnclick={() => scrollToComponent(this.aboutSection, { offset: 0, align: 'bottom', duration: 1000})}/>
            </section>
