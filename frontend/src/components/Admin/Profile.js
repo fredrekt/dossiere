@@ -23,6 +23,8 @@ import { connect } from 'react-redux'
 import { createProfile, getCurrentProfile, addExperience, addSkills, deleteSkill, deleteAccount } from '../../actions/profile'
 import { toast } from 'react-toastify'
 import ProfileExperience from '../ProfileExperience'
+import Lottie from 'lottie-react-web'
+import pageConstruction from '../../img/page-construction.json'
 
 toast.configure()
 
@@ -47,6 +49,10 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
         facebook: '',
         linkedin: '',
     })
+
+    //feature still under construction - not done
+
+    const [ available, setAvailable ] = useState(false);
 
     //add experiences & skills modal
     const [ show, setShow ] = useState(false)
@@ -100,10 +106,11 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                 setDisplayExp(3)
                 break;
             case "image":
-                setShow(true)
-                setExp(null)
-                setDisplayExp(3)
-                setElement({ modalTitle: 'Upload picture', modalImage: upload})     
+                // setShow(true)
+                // setExp(null)
+                // setDisplayExp(3)
+                // setElement({ modalTitle: 'Upload picture', modalImage: upload})     
+                setAvailable(true)
                 break;
             default:
                 setShow(false)
@@ -638,6 +645,32 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
                     </MDBContainer>
                 </MDBModalBody>
             </MDBModal>
+
+            <MDBContainer>
+                <MDBModal isOpen={available} toggle={()=>setAvailable(!available)} centered>
+                    <MDBModalBody>
+                    <div className="p-5">
+                        <div className="text-center">
+                        <div>
+                            <Lottie
+                            options={{
+                                animationData: pageConstruction
+                            }}
+                            />
+                        </div>
+                        <div>
+                            <p className="grey-text">
+                            This feature is under construction & not yet finished, still preparing it. Please bear with us.
+                            </p>
+                        </div>
+                        <div>
+                            <button onClick={()=>setAvailable(!available)} className="newsletter-subscription-button z-depth-1">I understand</button>
+                        </div>
+                        </div>
+                    </div>
+                    </MDBModalBody>
+                </MDBModal>
+            </MDBContainer>
         </>
     )
 }
