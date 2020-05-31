@@ -342,6 +342,8 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
                             </form>
                         </div>
                     </MDBContainer>
+                    {/* code below is commented because need to fix bug to not initiate map if value is equal to null  */}
+                    {/* code works perfectly fine */}
                     {/* <MDBContainer className="p-5">
                         <div className="mt-5">
                             <h5 className="h5-responsive">
