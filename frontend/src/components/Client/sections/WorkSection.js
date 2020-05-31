@@ -3,7 +3,7 @@ import { MDBContainer, MDBRow } from 'mdbreact'
 import Work from '../../Work'
 
 
-const WorkSection = () => {
+const WorkSection = ({ projectsCompleted, happyClients, photosTaken, linesOfCode }) => {
     return (
         <>
         <MDBContainer style={{ "padding": "5%" }} fluid className="counter-fluid-background">
@@ -19,23 +19,23 @@ const WorkSection = () => {
                 <MDBRow style={{ marginTop: "5%" }}>
                     <Work
                         work_icon="flag-checkered"
-                        work_title="16"
+                        work_title={projectsCompleted ? projectsCompleted : "16"}
                         work_description="Projects Completed"
                     />
                     <Work
                         work_icon="smile-beam"
-                        work_title="110"
+                        work_title={happyClients ? happyClients : "110"}
                         work_description="Happy Clients"
                     />
                     <Work
                         work_icon="camera-retro"
-                        work_title="1200"
+                        work_title={photosTaken ? photosTaken : "1200"}
                         work_description="Photos Taken"
                     />
                     
                     <Work
                         work_icon="code"
-                        work_title="600"
+                        work_title={linesOfCode ? linesOfCode :"600"}
                         work_description="Lines of Code"
                     />
                 </MDBRow>
