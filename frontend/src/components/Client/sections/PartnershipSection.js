@@ -2,7 +2,16 @@ import React from 'react'
 import { MDBContainer, MDBRow } from 'mdbreact'
 import Sponsors from '../../Sponsors'
 
-const PartnershipSection = () => {
+const PartnershipSection = ({sponsors}) => {
+
+    const data = sponsors.map((sponsor)=>
+    <Sponsors
+        sponsor_placement="top"
+        sponsor_img={sponsor.logo ? sponsor.logo : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRLpUpT3apna1hcAQk6B6cegPk42NKF6q8loUbqbQdWTJWJjEiU&usqp=CAU"}
+        sponsor_img_alt={sponsor.sponsor ? sponsor.sponsor : 'Not Available'}
+        sponsor_tooltip={sponsor.description ? sponsor.description : "My Operating System is powered by"}
+    />
+    )
     return (
         <>
             <MDBContainer>
@@ -16,13 +25,14 @@ const PartnershipSection = () => {
                 </div>
                 <MDBContainer className="mt-5 mb-5">
                     <MDBRow style={{ marginTop: "5%" }}>
-                        <Sponsors
+                        {data}
+                        {/* <Sponsors
                             sponsor_placement="top"
                             sponsor_img="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRLpUpT3apna1hcAQk6B6cegPk42NKF6q8loUbqbQdWTJWJjEiU&usqp=CAU"
                             sponsor_img_alt=""
                             sponsor_tooltip="My Operating System is powered by"
-                        />
-                        <Sponsors
+                        /> */}
+                        {/* <Sponsors
                             sponsor_placement="top"
                             sponsor_img="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTSAjTsIkCAD0AyJyKgIZnTYcoeZSAdHBN3bJaqeEOqdIkJpcvj&usqp=CAU"
                             sponsor_img_alt=""
@@ -39,7 +49,7 @@ const PartnershipSection = () => {
                             sponsor_img="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRf9EP3S1CefQAmq6s4XWixKZYoK524y_sJbSZ32_671bwqxlbE&usqp=CAU"
                             sponsor_img_alt=""
                             sponsor_tooltip="Starbucks Coffee"
-                        />
+                        /> */}
                     </MDBRow>
                 </MDBContainer>
             </MDBContainer>
