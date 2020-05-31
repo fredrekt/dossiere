@@ -7,6 +7,7 @@ const auth = require('./routes/api/auth')
 const profile = require('./routes/api/profile')
 const posts = require('./routes/api/posts')
 const contact = require('./routes/api/contact')
+const portfolios = require('./routes/api/portfolio')
 //end dir: routes/api
 const app = express()
 //connect to mongodb
@@ -28,6 +29,8 @@ app.use('/api/profile', profile)
 app.use('/api/posts', posts)
 //contact 
 app.use('/api/contact', contact)
+//portfolios
+app.use('/api/portfolios', portfolios)
 
 //serve static asset into production
 if(process.env.NODE_ENV === 'production'){
