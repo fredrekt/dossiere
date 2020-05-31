@@ -2,7 +2,15 @@ import React from 'react'
 import { MDBContainer, MDBRow } from 'mdbreact'
 import Talents from '../../Talent'
 
-const TalentsSection = () => {
+const TalentsSection = (props) => {
+    const data = props.skills.map((skill)=>
+         <Talents
+            talent_class="yellow-text"
+            talent_icon={skill.icon ? skill.icon : "js-square"}
+            talent_title={skill.skill ? skill.skill : "Javascript Developer"}
+            talent_description={skill.description ? skill.description : "I love JavaScript, known almost all the frameworks, specializing in backend and frontend."}
+        />
+    )
     return (
         <>
         <MDBContainer fluid className="talents-container-wrapper"> 
@@ -16,16 +24,17 @@ const TalentsSection = () => {
                     </p>
                 </div>
                <MDBRow style={{ marginTop: '5%' }}>
-                    <Talents
+                    {data}
+                    {/* <Talents
                         talent_class="yellow-text"
                         talent_icon="js-square"
-                        talent_title="Javascript Developer"
-                        talent_description="I love JavaScript, known almost all the frameworks, specializing in backend and frontend."
-                    />
-                    <Talents
+                        talent_title={props.skill ? props.skill : "Javascript Developer"}
+                        talent_description={props.description ? props.description : "I love JavaScript, known almost all the frameworks, specializing in backend and frontend."}
+                    /> */}
+                    {/* <Talents
                         talent_class="blue-text"
                         talent_icon="react"
-                        talent_title="React Developer"
+                        talent_title={props.skill2 ? props.skill2 : "React Developer"}
                         talent_description="I love building single page applications using ReactJS Library."
                     />
                     <Talents
@@ -39,7 +48,7 @@ const TalentsSection = () => {
                         talent_icon="laravel"
                         talent_title="Laravel Developer"
                         talent_description="Test code snippets and play with code in this environment."
-                    />
+                    /> */}
                </MDBRow>   
             </MDBContainer> 
         </MDBContainer>
