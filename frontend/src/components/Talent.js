@@ -11,7 +11,7 @@ const Talents = (props) => {
                 </div>
                 <div className="talent-details mt-3">
                     <div className="talent-title">
-                        <h4>
+                        <h4 className="text-capitalize">
                             {props.talent_title}
                         </h4>
                     </div>
