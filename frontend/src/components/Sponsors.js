@@ -5,7 +5,7 @@ const Sponsors = (props) => {
     return (
         <>
         <MDBCol md="3">
-            <MDBTooltip placement={props.sponsor_placement}>
+            <MDBTooltip domElement tag="div" placement={props.sponsor_placement}>
                 <img
                 className="partnership-img w-100"
                 src={props.sponsor_img} alt={props.sponsor_img_at} />
