@@ -14,6 +14,14 @@ class TestimonialSection extends Component{
       autoplaySpeed: 5000,
       speed: 1000
     };
+    const data = this.props.data.map((testimony)=>
+      <Testimonial
+        testimonial_img={testimony.image ? testimony.image : fred}
+        testimonial_name={ testimony ? testimony.name : "Fred Garingo"}
+        testimonial_job={ testimony ? testimony.status :  "Javascript Developer"}
+        testimonial_content={ testimony ? testimony.testimony : "A great developer who loves to learn new things and everything. Been so helpful and awesome dev. Please keep up the good work!"}
+      />
+    )
     return (
       <>
       <div className="testimonials-title-container text-center">
@@ -29,13 +37,14 @@ class TestimonialSection extends Component{
       </div>
       <MDBContainer>
         <Slider {...settings}>
-          <Testimonial
+          {data}
+          {/* <Testimonial
             testimonial_img={fred}
             testimonial_name="Fred Garingo"
             testimonial_job="Javascript Developer"
             testimonial_content="A great developer who loves to learn new things and everything. Been so helpful and awesome dev. Please keep up the good work!"
-          />
-          <Testimonial
+          /> */}
+          {/* <Testimonial
             testimonial_img={karen}
             testimonial_name="Karen Corporal"
             testimonial_job="Frontend Developer"
@@ -46,7 +55,7 @@ class TestimonialSection extends Component{
             testimonial_name="Fred Garingo"
             testimonial_job="Full Stack Developer"
             testimonial_content="A great developer who loves to learn new things and everything. Been so helpful and awesome dev. Please keep up the good work!"
-          />
+          /> */}
         </Slider>
       </MDBContainer>
       </>
