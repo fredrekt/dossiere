@@ -51,6 +51,7 @@ import Landing from './components/LandingPage/Landing';
 import Portfolio from './components/Client/Home'
 import ContactHelp from './components/Admin/Help/ContactHelp';
 import UserProfiles from './components/Client/UserProfiles';
+import AdminPortfolio from './components/Admin/Portfolio/Portfolio'
 import Dossiers from './components/Client/Dossiers';
 
 // set token - to get accepted
@@ -78,6 +79,7 @@ const App = () => {
         <>
           {/* Client View  */}
           <MDBContainer style={{ marginBottom: "10%", marginTop: "10%" }}>
+            <Route exact path="/admin-portfolio" component={AdminPortfolio}/>
             <Route exact path="/dossiers" component={Dossiers}/> 
             <Route exact path="/login" component={Login}/>        
             <Route exact path="/register" component={Register}/>
