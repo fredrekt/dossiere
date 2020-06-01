@@ -12,7 +12,7 @@ import { getCurrentProfile } from '../../../actions/profile'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, updatePortfolio, addSkill, addTestimony, deletePortfolio, removeSkill, removeTestimony, portfolio: { portfolio, loading }, profile: { profile }, history }) => {
+const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, updatePortfolio, addSkill, addTestimony, deletePortfolio, removeSkill, removeTestimony, portfolio: { portfolio, loading, error }, profile: { profile }, history }) => {
 
     const [ formData, setFormData ] = useState({
         dailyHobby: '',
@@ -31,9 +31,11 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
 
     const [ count, setCount ] = useState(0)
 
+    const [ err, setErr ] = useState(false)
+
     useEffect(()=>{
-        getCurrentProfile()
         getOwnPortfolio()
+        getCurrentProfile()
         if(portfolio === null){
             setFormData({
                 dailyHobby: '',
@@ -88,6 +90,11 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
             </div>
         )
         createPortfolio(formData, history, portfolio!==null ? true: false)
+
+        // if(error !== null){
+        //     setErr(!err)
+        // }
+        
         setTimeout(() =>{
             setBtn('Create Portfolio')
         },3000)
@@ -97,7 +104,7 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
         id: 91,
         title: "Digital Portfolio",
         className: "mt-2 ml-2",
-        icon: "briefcase",
+        icon: "th-list",
         subTitle: "This is an example of All your archived posts & articles are shown below, made by fred."
     }]
 
@@ -111,6 +118,83 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
                     <MDBProgress animated preloader value={80} className="my-2" />
                 </>,
     }]
+
+    const deleteFunction = portfolio !== null && (
+        <MDBContainer className="p-5">
+            <div className="mt-5">
+                <h5 className="h5-responsive">
+                    Remove Skill
+                </h5>
+                <MDBTable hover>
+                    <MDBTableHead>
+                        <tr>
+                            <th>ID #</th>
+                            <th>Skill</th>
+                            <th>Action</th>
+                        </tr>
+                    </MDBTableHead>
+                    <MDBTableBody>
+                        {portfolio.selectedSkills && portfolio.selectedSkills.map((skill)=>                                
+                        <tr>
+                            <td>
+                                {skill._id}
+                            </td>
+                            <td>
+                                {skill.skill}
+                            </td>
+                            <td>
+                                <MDBBtn onClick={(e)=>{
+                                    e.preventDefault()
+                                    removeSkill(skill._id)
+                                    }} size="sm" color="danger">
+                                    <MDBIcon far icon="trash-alt"/>
+                                </MDBBtn>
+                            </td>
+                        </tr>
+                        )}
+                    </MDBTableBody>
+                </MDBTable>
+            </div>
+            <div className="mt-5">
+                <h5 className="h5-responsive">
+                    Remove Testimony
+                </h5>
+                <MDBTable hover>
+                    <MDBTableHead>
+                    <tr>
+                        <th>ID #</th>
+                        <th>Name</th>
+                        <th>Job Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </MDBTableHead>
+                    <MDBTableBody>
+                        {portfolio.testimonials && portfolio.testimonials.map((testimony)=>
+                        <tr>
+                            <td>
+                                {testimony._id}
+                            </td>
+                            <td>
+                                {testimony.name}
+                            </td>
+                            <td>
+                                {testimony.status}
+                            </td>
+                            <td>
+                                <MDBBtn onClick={(e)=>{
+                                    e.preventDefault()
+                                    removeTestimony(testimony._id)
+                                    }} size="sm" color="danger">
+                                    <MDBIcon far icon="trash-alt"/>
+                                </MDBBtn>
+                            </td>
+                        </tr>
+                        )}
+                    </MDBTableBody>
+                </MDBTable>
+            </div>
+        </MDBContainer>
+    )
 
     return loading && portfolio === null ? (
         <>
@@ -176,40 +260,40 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
     ) : (
         <>
             <AdminTitle adminTitle={adminTitle}/>
-            <MDBCard>
+            <MDBCard style={{ borderLeft: count === 0 && '4px solid #0099ff', borderTop: count === 1 && '4px solid #0099ff', borderRight: count === 2 && '4px solid #0099ff', borderBottom: count === 3 && '4px solid #0099ff' }}>
                 <MDBCardBody>
                     <MDBContainer style={{ display: portfolio !== null ? 'none' : 'inline-block' }} className="p-5">
                         <div className="d-flex flex-column justify-content-center">
                             <div className="d-flex flex-row justify-content-around text-center">
-                                <div className="">
+                                <div style={{ cursor: 'pointer'}} onClick={()=>setCount(0)} className="">
                                     <div className={count === 0 ? "stepper-active mx-auto" : "stepper-done mx-auto"}>
                                         {count === 0 ? '1' : <MDBIcon icon="check"/>}
                                     </div>
-                                    <div>
-                                        Personal
+                                    <div style={{ color: count === 0 ? 'black' : 'grey' }} className="mt-1 font-weight-bold">
+                                        Personal Information
                                     </div>
                                 </div>
-                                <div>
-                                    <div className={count === 1 ? "stepper-active mx-auto" : count > 1 ? "stepper-done mx-auto" : "stepper mx-auto"}>
-                                        {count <= 1 ? '2' : <MDBIcon icon="check" />}
+                                <div onClick={()=>setCount(1)} style={{ cursor: 'pointer'}}>
+                                    <div className={count === 1 ? "stepper-active mx-auto" : count > 1 ? "stepper-done mx-auto" : err ? "stepper-error mx-auto" : "stepper mx-auto"}>
+                                        {count <= 1 ? '2' : err ? <MDBIcon icon="times" /> : <MDBIcon icon="check" />}
                                     </div>
-                                    <div>
-                                        Work 
+                                    <div style={{ color: count === 1 ? 'black' : 'grey' }} className="mt-1 font-weight-bold">
+                                        Work Details
                                     </div>
                                 </div>
-                                <div>
-                                    <div className={count === 2 ? "stepper-active mx-auto" : count > 2 ? "stepper-done" : "stepper mx-auto"}>
+                                <div onClick={()=>setCount(2)}  style={{ cursor: 'pointer'}}>
+                                    <div className={count === 2 ? "stepper-active mx-auto" : count > 2 ? "stepper-done mx-auto" : "stepper mx-auto"}>
                                         {count <= 2 ? '3' : <MDBIcon icon="check" />}
                                     </div>
-                                    <div>
-                                        Skills 
+                                    <div style={{ color: count === 2 ? 'black' : 'grey' }} className="mt-1 font-weight-bold">
+                                        Showcase Skills
                                     </div>
                                 </div>
-                                <div>
+                                <div onClick={()=>setCount(3)} style={{ cursor: 'pointer'}}> 
                                     <div className={count === 3 ? "stepper-active mx-auto": count >=4 ? "stepper-done mx-auto" : "stepper mx-auto"}>
                                         {count <= 3 ? '4' : <MDBIcon icon="check" />}
                                     </div>
-                                    <div>
+                                    <div  style={{ color: count == 3 ? 'black' : 'grey'}} className="mt-1 font-weight-bold">
                                         Testimonials
                                     </div>
                                 </div>
@@ -217,10 +301,10 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
                         </div>
                         <form onSubmit={(e)=>onSubmit(e)}>
                         <div style={{display: count === 0 ? 'inline' : 'none'}}>
-                            <div className="mt-5 text-center">
-                                <h1>
-                                    Step one
-                                </h1>
+                            <div style={{ textAlign: '-webkit-center' }} className="mt-5">
+                                <p className="grey-text">
+                                    Tell us something about yourself
+                                </p>
                                 <div className="mx-auto">
                                     <MDBInput name="dailyHobby" value={dailyHobby} onChange={(e)=>onChange(e)} label="Your Daily Hobby" outline rows="2" type="textarea"/>
                                     <MDBInput name="whatYouDo" value={whatYouDo} onChange={(e)=>onChange(e)}  label="What You Do?" outline rows="2" type="textarea"/>
@@ -229,22 +313,22 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
                             </div>
                         </div>
                         <div style={{display: count === 1 ? 'inline' : 'none'}}>
-                            <div className="mt-5 text-center">
-                                <h1>
-                                    Step two
-                                </h1>
+                            <div style={{ textAlign: '-webkit-center' }} className="mt-5">
+                                <p className="grey-text">
+                                    Share something about your projects 
+                                </p>
                                 <MDBInput name="projectsCompleted" value={projectsCompleted} onChange={(e)=>onChange(e)}  label="How Many Projects Completed" outline type="number"/>
                                 <MDBInput name="happyClients" value={happyClients} onChange={(e)=>onChange(e)}  label="How Many Happy Clients" outline type="number"/>  
                             </div>
                         </div>
                         <div style={{display: count === 2 ? 'inline' : 'none'}}>
-                            <div className="mt-5 text-center">
-                                <h1>
-                                    Step three
-                                </h1>
+                            <div style={{ textAlign: '-webkit-center' }} className="mt-5">
+                                <p className="grey-text">
+                                    Showcase your skills & talents to the world
+                                </p>
                                 <div style={{ display: portfolio === null ? 'inline' : 'none' }}>
                                     {/* <MDBInput name="skill" value={skill} onChange={(e)=>onChange(e)}  label="Your Skill" outline type="text"/> */}
-                                    <select name="skill" value={skill} onChange={(e)=>onChange(e)} className="browser-default w-50 custom-select mt-3">
+                                    <select name="skill" value={skill} onChange={(e)=>onChange(e)} className="browser-default w-50 custom-select">
                                         <option>Choose skills</option>
                                         {profile.skills.map((optionSkill)=>
                                             <option className="text-capitalize" value={optionSkill}>{optionSkill}</option>
@@ -255,10 +339,10 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
                             </div>
                         </div>
                         <div style={{display: count >= 3 ? 'inline' : 'none'}}>
-                            <div className="mt-5 text-center">
-                                <h1>
-                                    Step four
-                                </h1>    
+                            <div style={{ textAlign: '-webkit-center' }} className="mt-5">
+                                <p className="grey-text">
+                                    Something what your clients said about you
+                                </p>    
                                 <MDBInput name="name" value={name} onChange={(e)=>onChange(e)}  label="Testimonial Name" outline type="text"/>
                                 <MDBInput name="status" value={status} onChange={(e)=>onChange(e)}  label="Testimonial Status" outline type="text"/>
                                 <MDBInput name="testimony" value={testimony} onChange={(e)=>onChange(e)}  label="Testimonial Testimony" outline rows="5" type="textarea"/>
@@ -268,12 +352,14 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
                             </div>
                         </div>                           
                         </form>
-                        <MDBBtn style={{ display: count < 3 ? 'inline' : 'none'}} size="sm" color="danger" onClick={()=>setCount(count+1)}>
-                            next
-                        </MDBBtn>
+                        <div className="text-center">
+                            <MDBBtn  style={{ display: count < 3 ? 'inline' : 'none'}} size="sm" color="danger" onClick={()=>setCount(count+1)}>
+                                next
+                            </MDBBtn>
+                        </div>
                     </MDBContainer>
                     <MDBContainer style={{ display: portfolio === null ? 'none' : 'inline-block' }} className="p-5">
-                        <div className="mt-5">
+                        <div className={portfolio === null && "mt-5"}>
                             <h5 className="h5-responsive">
                                 Update Portfolio
                             </h5>
@@ -344,6 +430,7 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
                     </MDBContainer>
                     {/* code below is commented because need to fix bug to not initiate map if value is equal to null  */}
                     {/* code works perfectly fine */}
+                    {deleteFunction}
                     {/* <MDBContainer className="p-5">
                         <div className="mt-5">
                             <h5 className="h5-responsive">
@@ -440,7 +527,7 @@ Portfolio.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    error: state.portfolio.error,
+    error: state.portfolio,
     portfolio: state.portfolio,
     profile: state.profile
 })
