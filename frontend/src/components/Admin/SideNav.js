@@ -17,6 +17,7 @@ import { connect } from 'react-redux'
 import { logout } from '../../actions/auth'
 import PrivateRoute from '../routing/PrivateRoute'
 import NewProfile from './Profile'
+import Portfolio from './Portfolio/Portfolio';
 
 const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
 
@@ -91,7 +92,7 @@ const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
             </NavIcon>
             <NavText>
                 <Link to="/contact-help">
-                    Got a question?
+                    Configure Portfolio
                 </Link>
             </NavText>
         </NavItem>
@@ -101,7 +102,7 @@ const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
             </NavIcon>
             <NavText>
                 <Link to="/profile">
-                    Account
+                    Account Information
                 </Link>
             </NavText>
         </NavItem>
@@ -123,7 +124,7 @@ const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
         <PrivateRoute exact path="/active-posts" component={ActivePosts}/>
         <PrivateRoute exact path="/analytics-posts" component={PostAnalytics}/>
         <PrivateRoute exact path="/archived-posts" component={ArchivedPosts}/>
-        <PrivateRoute exact path="/contact-help" component={ContactHelp}/>
+        <PrivateRoute exact path="/contact-help" component={Portfolio}/>
         <PrivateRoute exact path="/profile" component={NewProfile}/>
     </MDBContainer>
 </Switch>
