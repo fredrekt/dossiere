@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { setAlert } from './alert'
-import { LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADED, AUTH_ERROR, LOGOUT, CLEAR_PROFILE, REGISTER_SUCCESS, REGISTER_FAIL } from './types'
+import { LOGIN_SUCCESS, LOGIN_FAIL, 
+    USER_LOADED, AUTH_ERROR, LOGOUT, 
+    CLEAR_PROFILE, REGISTER_SUCCESS, 
+    REGISTER_FAIL, CLEAR_PORTFOLIO } from './types'
 import setAuthToken from '../utils/setAuthToken'
 
 //load user
@@ -91,5 +94,6 @@ export const login = ( email, password ) => async dispatch => {
 //logout - clear user in redux
 export const logout = () => dispatch =>{
     dispatch({ type: CLEAR_PROFILE });
+    dispatch({ type: CLEAR_PORTFOLIO })
     dispatch({ type: LOGOUT });
 }
