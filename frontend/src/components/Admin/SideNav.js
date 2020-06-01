@@ -88,10 +88,10 @@ const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
         </NavItem>
         <NavItem eventKey="help">
             <NavIcon>
-                <MDBIcon size="1x" icon="question-circle" />
+                <MDBIcon size="1x" icon="layer-group" />
             </NavIcon>
             <NavText>
-                <Link to="/contact-help">
+                <Link to="/portfolio-profile">
                     Configure Portfolio
                 </Link>
             </NavText>
@@ -124,7 +124,7 @@ const SideNavbar = ({ auth: { isAuthenticated, loading }, logout }) =>{
         <PrivateRoute exact path="/active-posts" component={ActivePosts}/>
         <PrivateRoute exact path="/analytics-posts" component={PostAnalytics}/>
         <PrivateRoute exact path="/archived-posts" component={ArchivedPosts}/>
-        <PrivateRoute exact path="/contact-help" component={Portfolio}/>
+        <PrivateRoute exact path="/portfolio-profile" component={Portfolio}/>
         <PrivateRoute exact path="/profile" component={NewProfile}/>
     </MDBContainer>
 </Switch>
