@@ -17,6 +17,7 @@ import onboarding from '../../img/onboarding-vector.jpg'
 import happy from '../../img/happy-people.jpg'
 import DashboardPanels from '../DashboardPanels'
 import BlogMain from '../BlogMain'
+import FeaturedBlog from '../FeaturedBlog'
 
 const Dashboard = ({ loadUser, getCurrentProfile, getPosts, getMessages, post: { posts }, auth: { user }, profile: { profile, loading }, messages: { messages }, history }) =>{
 
@@ -56,13 +57,14 @@ const Dashboard = ({ loadUser, getCurrentProfile, getPosts, getMessages, post: {
                 </>,
     }]
 
-    const highlightArticle = [{
+    const highlightArticle = {
         _id: 1,
         title: "ReactJS Developer, useHooks or not?",
+        topic: 'Sample Topic',
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sodales diam at vehicula aliquam. Ut posuere libero id massa efficitur lobortis. Sed auctor mauris ut sem semper faucibus.",
         user: "fred",
         date: "AUG 19, 2020"
-    }]
+    }
 
     return loading && profile === null ? (
         <>
@@ -222,9 +224,7 @@ const Dashboard = ({ loadUser, getCurrentProfile, getPosts, getMessages, post: {
                                         This article of yours is the highlight of the month! Many viewers and comments and 
                                         human computer interaction.
                                     </p>
-                                    {/* <>
-                                        <BlogMain data={highlightArticle}/>
-                                    </> */}
+                                    <FeaturedBlog featuredArticle={highlightArticle} />
                                 </MDBContainer>
                             </MDBCardBody>
                         </MDBCard>
