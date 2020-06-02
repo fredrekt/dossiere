@@ -1,6 +1,7 @@
 const express = require('express')
 const route = express.Router()
 const Contact = require('../../models/Contact')
+const auth = require('../../middleware/auth')
 const { check, validationResult } = require('express-validator')
 
 // use: GET api/contact
@@ -15,6 +16,21 @@ route.get('/', async (req, res) =>{
         res.status(500).send('Server Error')
     }
 })
+
+// use: GET api/contact/me
+//description: get all who sent a message to admin(owner)
+route.get('/me', auth, async (req, res) =>{
+    try {
+        const messages = await Contact.find({ user: req.user.id })
+        res.json(messages)
+    } 
+    catch (err) {
+        console.log(err)
+        res.status(500).send('Server Error')
+    }
+})
+
+
 
 // use: POST api/contact
 //description: send a message to admin(owner)
