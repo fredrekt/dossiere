@@ -11,16 +11,20 @@ import { connect } from 'react-redux'
 import Spinner from '../Spinner'
 import { getCurrentProfile } from '../../actions/profile'
 import { loadUser } from '../../actions/auth'
+import { getPosts } from '../../actions/post'
+import { getMessages } from '../../actions/messages'
 import onboarding from '../../img/onboarding-vector.jpg'
 import happy from '../../img/happy-people.jpg'
 import DashboardPanels from '../DashboardPanels'
 import BlogMain from '../BlogMain'
 
-const Dashboard = ({ loadUser, getCurrentProfile, auth: { user }, profile: { profile, loading }, history }) =>{
+const Dashboard = ({ loadUser, getCurrentProfile, getPosts, getMessages, post: { posts }, auth: { user }, profile: { profile, loading }, messages: { messages }, history }) =>{
 
     useEffect(()=>{
         loadUser()
         getCurrentProfile();
+        getPosts()
+        getMessages()
     }, [loadUser])
 
     const [show, setShow] = useState(true);
@@ -180,21 +184,21 @@ const Dashboard = ({ loadUser, getCurrentProfile, auth: { user }, profile: { pro
                     <DashboardPanels
                         className="far fa-list-alt fa-lg default-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"
                         title="Articles & Blogs"
-                        count="1205"
+                        count={posts && posts.length}
                         progressValue="25"
                         progressText="Articles & blogs are published"
                     />
                     <DashboardPanels
                         className="far fa-envelope fa-lg default-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"
                         title="Messages"
-                        count="109"
+                        count={messages && messages.length}
                         progressValue="50"
                         progressText="You have this total messages"
                     />
                     <DashboardPanels
                         className="far fa-comments fa-lg default-color z-depth-2 p-4 ml-3 mt-n3 rounded text-white"
                         title="Comments"
-                        count="301"
+                        count={posts.comments ? posts[4].comments.length : '1'}
                         progressValue="75"
                         progressText="Total of comments per week"
                     />
@@ -292,12 +296,17 @@ Dashboard.propTypes = {
     auth: PropTypes.object.isRequired,
     loadUser: PropTypes.func.isRequired,
     getCurrentProfile: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired
+    getMessages: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired,
+    post: PropTypes.object.isRequired,
+    messages: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state =>({
     auth: state.auth,
-    profile: state.profile
+    profile: state.profile,
+    post: state.post,
+    messages: state.messages
 })
 
-export default connect(mapStateToProps, { loadUser, getCurrentProfile })(withRouter(Dashboard))
+export default connect(mapStateToProps, { loadUser, getCurrentProfile, getPosts, getMessages })(withRouter(Dashboard))
