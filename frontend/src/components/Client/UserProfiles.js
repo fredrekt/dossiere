@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { MDBCard, MDBCardBody, MDBRow, MDBCol, 
-    MDBContainer, MDBIcon, MDBBtn, MDBTooltip,
+import { MDBCard, MDBCardBody, MDBCol, 
+    MDBContainer, MDBIcon, MDBTooltip,
     MDBModal, MDBModalBody
 } from 'mdbreact'
 import pp from '../../img/fred.jpg'
@@ -76,7 +76,7 @@ const UserProfiles = ({profiles}) => {
                 </div>
                 <div className="d-flex flex-row justify-content-center mt-4 mb-2">
                     <Link to={profile.user ? `/portfolio/${profile.user._id}` : "/portfolio"} className="white-text">
-                        <button className="profile-users-button z-depth-1">
+                        <button className="landing-features-button z-depth-1">
                             View Portfolio
                         </button>
                     </Link>

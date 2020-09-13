@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Navbar from './Navbar'
-import SideNav from './Admin/SideNav'
-import Home from './Client/Home'
+// import SideNav from './Admin/SideNav'
+// import Home from './Client/Home'
 import { Redirect } from 'react-router-dom'
-import App from './Client/App'
+// import App from './Client/App'
 
 
 const NavigationBar = ({ auth: { isAuthenticated, loading } }) => {

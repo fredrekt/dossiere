@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { MDBJumbotron, MDBBtn, MDBContainer,
+import { MDBBtn, MDBContainer,
     MDBRow, MDBCol, MDBProgress, MDBCard, MDBCardBody,
-    MDBCardText, MDBModalFooter, MDBModal, MDBModalHeader,
+    MDBCardText, MDBModal,
     MDBModalBody
 } from 'mdbreact'
-import { Link, Redirect, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import AdminTitle from '../AdminTitle'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Spinner from '../Spinner'
+// import Spinner from '../Spinner'
 import { getCurrentProfile } from '../../actions/profile'
 import { loadUser } from '../../actions/auth'
 import { getPosts } from '../../actions/post'
@@ -16,7 +16,7 @@ import { getMessages } from '../../actions/messages'
 import onboarding from '../../img/onboarding-vector.jpg'
 import happy from '../../img/happy-people.jpg'
 import DashboardPanels from '../DashboardPanels'
-import BlogMain from '../BlogMain'
+// import BlogMain from '../BlogMain'
 import FeaturedBlog from '../FeaturedBlog'
 
 const Dashboard = ({ loadUser, getCurrentProfile, getPosts, getMessages, post: { posts }, auth: { user }, profile: { profile, loading }, messages: { messages }, history }) =>{

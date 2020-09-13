@@ -293,7 +293,7 @@ const Portfolio = ({ getCurrentProfile, createPortfolio, getOwnPortfolio, update
                                     <div className={count === 3 ? "stepper-active mx-auto": count >=4 ? "stepper-done mx-auto" : "stepper mx-auto"}>
                                         {count <= 3 ? '4' : <MDBIcon icon="check" />}
                                     </div>
-                                    <div  style={{ color: count == 3 ? 'black' : 'grey'}} className="mt-1 font-weight-bold">
+                                    <div  style={{ color: count === 3 ? 'black' : 'grey'}} className="mt-1 font-weight-bold">
                                         Testimonials
                                     </div>
                                 </div>

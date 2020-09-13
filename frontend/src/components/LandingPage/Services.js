@@ -1,7 +1,7 @@
 import React from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon } from 'mdbreact'
 import Slide from 'react-reveal'
-import blob1 from '../../img/blob-landing.svg'
+// import blob1 from '../../img/blob-landing.svg'
  
 const Services = () => {
     return (

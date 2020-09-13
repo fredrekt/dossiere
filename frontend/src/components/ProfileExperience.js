@@ -1,5 +1,5 @@
 import React from 'react'
-import { MDBCard, MDBCardBody, MDBContainer, MDBBtn, MDBPopover, MDBPopoverHeader, MDBPopoverBody, MDBIcon } from 'mdbreact'
+import { MDBCard, MDBCardBody, MDBPopover, MDBPopoverHeader, MDBPopoverBody, MDBIcon } from 'mdbreact'
 import Moment from 'react-moment'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'

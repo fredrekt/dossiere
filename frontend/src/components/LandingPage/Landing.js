@@ -39,11 +39,11 @@ const Landing = ({introSection}) => {
         marginLeft: "30%"
     }
 
-    const footerStyle = {
-        backgroundImage: `url(${footerBg})`,
-        bottom: 0,
-        width: "100%"
-    }
+    // const footerStyle = {
+    //     backgroundImage: `url(${footerBg})`,
+    //     bottom: 0,
+    //     width: "100%"
+    // }
 
     const copyrightDate = new Date().getFullYear().toString();
 

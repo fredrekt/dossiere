@@ -1,5 +1,5 @@
 import React from 'react'
-import { MDBBox, MDBIcon, MDBBtn } from 'mdbreact'
+import { MDBBox, MDBBtn } from 'mdbreact'
 import pp from '../img/fred.jpg'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'

@@ -1,17 +1,17 @@
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-import React, { useEffect } from 'react'
+import React from 'react'
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { MDBIcon, MDBContainer } from 'mdbreact'
-import {BrowserRouter, Route,Switch} from 'react-router-dom'
+import {BrowserRouter, Switch} from 'react-router-dom'
 import CreatePost from './ManagePosts/CreatePost'
 import Dashboard from './Dashboard'
 import ActivePosts from './ManagePosts/ActivePosts'
 import PostAnalytics from './ManagePosts/PostAnalytics'
 import ArchivedPosts from './ManagePosts/ArchivedPosts'
-import ContactHelp from './Help/ContactHelp'
-import Profile from './auth/Profile'
+// import ContactHelp from './Help/ContactHelp'
+// import Profile from './auth/Profile'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logout } from '../../actions/auth'

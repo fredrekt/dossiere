@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { MDBTable, MDBTableBody, MDBTableHead,
-    MDBIcon, MDBBtn, MDBContainer, MDBModal, MDBModalHeader, MDBModalFooter, MDBModalBody } from 'mdbreact';
+    MDBIcon, MDBBtn } from 'mdbreact';
 import Moment from 'react-moment'
 import { connect } from 'react-redux'
 import { deletePost } from '../../../../actions/post'
@@ -19,7 +19,7 @@ const Tables = ({ data, deletePost }) => {
                 <td>{datas.views.length === 0 ? 'No views yet' :datas.views.length}</td>
                 <td>{datas.likes.length === 0 ? 'No likes yet' : datas.likes.length}</td>
                 <td>{datas.comments.length === 0 ? 'No comments yet': datas.comments.length}</td>
-                <td>{datas.date}</td>
+                <td><Moment format="MMM DD, YYYY">{datas.date}</Moment></td>
                 <td><MDBBtn onClick={(e)=>{
                     e.preventDefault()
                     deletePost(datas._id)

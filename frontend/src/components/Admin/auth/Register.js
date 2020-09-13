@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MDBContainer, MDBRow, MDBCol, 
-    MDBBtn, MDBInput, MDBAnimation } from 'mdbreact'
+    MDBBtn, MDBInput } from 'mdbreact'
 import frontdesk from '../../../img/development.jpg'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'

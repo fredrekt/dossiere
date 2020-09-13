@@ -1,5 +1,5 @@
 import React from 'react'
-import { MDBIcon, MDBProgress } from 'mdbreact'
+import { MDBIcon } from 'mdbreact'
 
 const AdminTitle = props => {
     const admin = props.adminTitle

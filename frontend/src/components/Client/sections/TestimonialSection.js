@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { MDBContainer, MDBAnimation } from 'mdbreact' 
 import fred from '../../../img/fred.jpg'
-import karen from '../../../img/karen.jpg'
-import fred2 from '../../../img/fred2.jpg'
+// import karen from '../../../img/karen.jpg'
+// import fred2 from '../../../img/fred2.jpg'
 import Slider from "react-slick";
 import Testimonial from '../Testimonial';
 

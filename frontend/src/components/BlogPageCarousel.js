@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { MDBContainer, MDBCard, MDBCardBody, MDBIcon,
-    MDBBox, MDBCardText, MDBBtn, MDBInput } from "mdbreact"; 
-import Comments from './Comments'
+    MDBBox, MDBCardText, MDBBtn } from "mdbreact"; 
+// import Comments from './Comments'
 import pp from '../img/fred.jpg'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'

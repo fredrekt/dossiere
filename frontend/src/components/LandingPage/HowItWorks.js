@@ -1,16 +1,10 @@
 import React from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon } from 'mdbreact' 
-import Lottie from 'lottie-react-web'
+// import Lottie from 'lottie-react-web'
 import Slide from 'react-reveal'
 import how from '../../img/how-landing-2.svg'
 
 const HowItWorks = () => {
-
-    const styledContainer = {
-        marginTop: "50%",
-        marginLeft: "30%"
-    }
-
     const cardStyle = {
         borderBottom: "4px solid #0099ff"
     }

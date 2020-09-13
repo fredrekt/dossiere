@@ -4,8 +4,9 @@ import { MDBContainer, MDBView, MDBMask,
 } from 'mdbreact'
 import fred from '../img/fred2.jpg'
 import img from '../img/working.jpg'
-import work from '../img/bcrumbs-bg.jpg'
-import cup from '../img/cup.jpg'
+// import work from '../img/bcrumbs-bg.jpg'
+// import cup from '../img/cup.jpg';
+
 const BlogColumnView = () => {
     return (
         <>

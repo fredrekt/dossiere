@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MDBContainer, MDBRow, 
-    MDBCol, MDBBtn, MDBInput, MDBAnimation } from 'mdbreact';
+    MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 import frontdesk from '../../../img/development.jpg'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -85,7 +85,7 @@ const Login = ({ login, isAuthenticated }) => {
                             validate />
                         </div>
                         <div className="ml-0 mb-4">
-                            Forgot your password? <Link to="/register">Retrieve here</Link>
+                            Don't have an account yet? <Link to="/register">Sign up here</Link>
                         </div>
                         <div className="text-center">
                         <MDBBtn id="btn-id-submit" type="submit" className="w-100 ml-0">{Btn}</MDBBtn>

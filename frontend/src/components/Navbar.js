@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, 
     MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBBtn,
-    MDBModal, MDBModalBody, MDBModalHeader, MDBInput,
+    MDBModal, MDBModalBody, MDBInput,
     MDBContainer
  } from 'mdbreact';
 import logo from '../img/logo-black.JPG'
 import Lottie from 'lottie-react-web'
 import pageConstruction from '../img/page-construction.json'
 import emailSent from '../img/newsletter-email-sent.json'
+import { withRouter } from 'react-router-dom';
 
 class FullPageIntroWithFixedTransparentNavbar extends Component {
   constructor(props) {
@@ -54,11 +55,15 @@ class FullPageIntroWithFixedTransparentNavbar extends Component {
   }
   
   render() {
-    const doneEmail = this.state.doneEmail+939
+    const activeRoute = route => {
+      return {
+        active: this.props.location.pathname === route ? true : false
+      }
+    }
     return (
       <>
         <header>
-            <MDBNavbar color="white" fixed="top" light expand="md" scrolling transparent>
+            <MDBNavbar color="white" className="z-depth-0" fixed="top" light expand="md" scrolling transparent>
               <MDBNavbarBrand href="/">
                 <strong id="app-title">
                   <img className="w-50" src={logo} alt=""/>
@@ -67,13 +72,13 @@ class FullPageIntroWithFixedTransparentNavbar extends Component {
               {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick} />}
               <MDBCollapse isOpen={this.state.collapse} navbar>
                 <MDBNavbarNav style={{ alignItems: "center" }} right>
-                  <MDBNavItem className="nav-item"> 
+                  <MDBNavItem {...activeRoute('/')} className="nav-item"> 
                     <MDBNavLink to="/">Home</MDBNavLink>
                   </MDBNavItem>
-                  <MDBNavItem className="nav-item" onClick={()=>console.log("clicked blog")}>
+                  <MDBNavItem {...activeRoute('/blog')} className="nav-item" onClick={()=>console.log("clicked blog")}>
                     <MDBNavLink to="/blog">Articles</MDBNavLink>
                   </MDBNavItem>
-                  <MDBNavItem className="nav-item" onClick={()=>console.log("clicked about")} >
+                  <MDBNavItem {...activeRoute('/dossiers')} className="nav-item" onClick={()=>console.log("clicked about")} >
                     <MDBNavLink to="/dossiers">Dossier Profiles</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem className="nav-item" onClick={()=>console.log("clicked subscribe")} >
@@ -183,4 +188,4 @@ class FullPageIntroWithFixedTransparentNavbar extends Component {
   }
 }
 
-export default FullPageIntroWithFixedTransparentNavbar;
+export default withRouter(FullPageIntroWithFixedTransparentNavbar);

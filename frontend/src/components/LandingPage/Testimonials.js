@@ -1,5 +1,5 @@
 import React from 'react'
-import { MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdbreact'
+import { MDBContainer, MDBIcon } from 'mdbreact'
 import fred from '../../img/fred.jpg'
 import karen from '../../img/karen.jpg'
 import Slider from "react-slick";

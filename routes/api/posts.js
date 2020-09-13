@@ -245,6 +245,47 @@ route.post('/comment/:id', [
     }
 )
 
+
+//use: POST api/posts/comment/:id 
+//description: comment to a post or blog
+route.put('/comment/:id/:comment_id', [
+    check('comment', 'A comment is required')
+    .not()
+    .isEmpty()
+], 
+    async (req, res) => {
+        const errors = validationResult(req)
+        if(!errors.isEmpty()){
+            console.log(errors.array())
+            return res.status(400).json({ errors: errors.array() });
+        }
+   
+        try {
+            const post = await Post.findById(req.params.id)
+            
+            const comment = post.comments.find(comment => comment.id === req.params.comment_id)
+
+            if(!comment){
+                return res.status(404).json({ msg: "Comment not found" })
+            }
+
+            const newReply = {
+                comment: req.body.comment,
+                user: null
+            }
+
+            post.replies.unshift(newReply)
+            await post.save()
+            res.json(post.replies)
+        } 
+        catch (err) {
+            console.log(err)
+            res.status(500).send('Server Error')
+        }
+    }
+)
+
+
 //use: DELETE api/posts 
 //description: delete post or blog by post id
 route.delete('/comment/:id/:comment_id', auth, async (req, res) => {

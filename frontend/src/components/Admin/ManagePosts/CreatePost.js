@@ -6,7 +6,6 @@ import AdminTitle from '../../AdminTitle'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { createPost } from '../../../actions/post'
-import { Redirect } from 'react-router-dom'
 import Lottie from 'lottie-react-web'
 import pageConstruction from '../../../img/page-construction.json'
 
@@ -76,7 +75,7 @@ const CreatePost = ({ createPost, posts, loading, history }) => {
             </p>
             <MDBRow>
                 <MDBCol md="3">
-                    <a onClick={()=>setShow(true)}>
+                    <a href="#preview1" onClick={()=>setShow(true)}>
                         <input type="radio"/>
                         <MDBCard className="card-hover">
                             <MDBCardBody>
@@ -88,7 +87,7 @@ const CreatePost = ({ createPost, posts, loading, history }) => {
                     </a>
                 </MDBCol>
                 <MDBCol md="3">
-                    <a onClick={()=>setShow(true)}>
+                    <a href="#preview2" onClick={()=>setShow(true)}>
                         <MDBCard className="card-hover">
                             <MDBCardBody>
                                 <MDBCardText>
@@ -99,7 +98,7 @@ const CreatePost = ({ createPost, posts, loading, history }) => {
                     </a>
                 </MDBCol>
                 <MDBCol md="3">
-                    <a onClick={()=>setShow(true)}>
+                    <a href="#preview3" onClick={()=>setShow(true)}>
                         <MDBCard className="card-hover">
                             <MDBCardBody>
                                 <MDBCardText>

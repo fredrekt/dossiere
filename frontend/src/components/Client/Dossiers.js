@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import UserProfiles from './UserProfiles'
-import { MDBContainer, MDBRow } from 'mdbreact'
+// import { MDBContainer, MDBRow } from 'mdbreact'
 import karen from '../../img/karen.jpg'
 import Breadcrumbs from '../Breadcrumbs'
 import Slide from 'react-reveal'

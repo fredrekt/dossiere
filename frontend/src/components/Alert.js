@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { MDBAlert, MDBContainer } from 'mdbreact'
+import { MDBContainer } from 'mdbreact'
 import 'react-toastify/dist/ReactToastify.css'
 import { toast } from 'react-toastify'
 
@@ -21,7 +21,7 @@ const Alert = ({ alerts }) =>
         {/* <MDBAlert dismiss key={alert.id} color={alert.alertType} >
             {alert.msg}
         </MDBAlert> */}
-        {alert.alertType == "success" ? showSuccessToast(alert.msg) : showToastError(alert.msg)}
+        {alert.alertType === "success" ? showSuccessToast(alert.msg) : showToastError(alert.msg)}
         {/* {toast}.{alert.alertType}({alert.msg}) */}
     </MDBContainer>
 ))

@@ -2,8 +2,8 @@ import React from 'react'
 import { MDBContainer, MDBIcon, MDBCol, MDBRow,
     MDBMask, MDBView, MDBBadge
 } from 'mdbreact'
-import Breadcrumbs from './Breadcrumbs'
-import pp from '../img/bcrumbs-bg.jpg'
+// import Breadcrumbs from './Breadcrumbs'
+// import pp from '../img/bcrumbs-bg.jpg'
 import Testimonial from './Client/Testimonial'
 import karen from '../img/karen.jpg'
 import Comments from './Comments'

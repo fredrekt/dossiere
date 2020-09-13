@@ -5,9 +5,6 @@ import dev from '../../img/developer-landing.json'
 import Slide from 'react-reveal'
 
 const About = () => {
-
-    const [ show, setShow ] = useState(false)
-
     const [ hover, setHover ] = useState(false)
 
     const styledContainer = {

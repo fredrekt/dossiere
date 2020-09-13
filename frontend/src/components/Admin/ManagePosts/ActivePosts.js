@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MDBModal, MDBModalBody, MDBBtn, MDBContainer, 
-  MDBTable, MDBTableBody, MDBTableHead, MDBProgress } from 'mdbreact';
+  MDBProgress } from 'mdbreact';
 import AdminTitle from '../../AdminTitle';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -25,24 +25,6 @@ const ActivePosts = ({ getPosts, post: { posts, loading } }) => {
     className: "mt-2 ml-2",
     subTitle: "This is an example of your overview, made by fred and designed by fred and the components of this project."
   }]
-
-  const sampleData = [{
-    _id: 1,
-    title: "Hello World",
-    date: "AUG 2020",
-    views: [ '1', '2'],
-    likes: [],
-    comments: []
-  },
-  {
-    _id: 2,
-    title: "Introduction to JavaScript",
-    date: "JUNE 2020",
-    views: [ '1', '2'],
-    likes: [],
-    comments: []
-  }
-  ]
 
   const loadingAdminTitle = [{
     id:99,
