@@ -129,7 +129,7 @@ class FullPageIntroWithFixedTransparentNavbar extends Component {
                 </div>
               </form>
               <div className="newsletter-cancel">
-                <a type="button" className="black-text" onClick={this.toggle}>No Thanks</a>
+                <a href="#cancel" type="button" className="black-text" onClick={this.toggle}>No Thanks</a>
               </div>
             </div>
           </div>

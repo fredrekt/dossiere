@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { MDBTable, MDBTableBody, MDBTableHead,
     MDBIcon, MDBBtn } from 'mdbreact';
@@ -7,9 +7,6 @@ import { connect } from 'react-redux'
 import { deletePost } from '../../../../actions/post'
 
 const Tables = ({ data, deletePost }) => {
-
-    const [ show, setShow ]= useState(false)
-
     const tableData = data.map((datas)=>
 
         <>

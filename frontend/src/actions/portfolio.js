@@ -176,11 +176,11 @@ export const addTestimony = (formData, id) => async dispatch => {
 //update portfolio - remove skill
 export const removeSkill = id => async dispatch => {
     try {
-        const config = {
-            headers: {
-                "Content-Type": "application/json"
-            }  
-        }
+        // const config = {
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     }  
+        // }
 
         const res = await axios.delete(`/api/portfolios/remove-skill/${id}`);
 
@@ -204,11 +204,11 @@ export const removeSkill = id => async dispatch => {
 //update portfolio - remove testimony
 export const removeTestimony = id => async dispatch => {
     try {
-        const config = {
-            headers: {
-                "Content-Type": "application/json"
-            }  
-        }
+        // const config = {
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     }  
+        // }
 
         const res = await axios.delete(`/api/portfolios/remove-testimony/${id}`);
 

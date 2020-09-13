@@ -31,7 +31,7 @@ const Dashboard = ({ loadUser, getCurrentProfile, getPosts, getMessages, post: {
     const [show, setShow] = useState(true);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
 
     const startOnboarding = () =>{
         setShow(false)

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { MDBContainer, MDBRow, MDBCol,
     MDBInput, MDBBtn, MDBCard, MDBCardBody,
     MDBCardText, MDBModal, MDBModalBody, MDBIcon,
@@ -8,12 +8,12 @@ import { MDBContainer, MDBRow, MDBCol,
 import AdminTitle from '../AdminTitle'
 import fred from '../../img/fred.jpg' 
 import karen from '../../img/karen.jpg' 
-import PanelJob from '../PanelJob'
-import onboarding from '../../img/onboarding-vector.jpg'
+// import PanelJob from '../PanelJob'
+// import onboarding from '../../img/onboarding-vector.jpg'
 import write from '../../img/writing-vector.jpg'
 import imageUpload from '../../img/image-upload-vector.jpg'
 import workSkills from '../../img/work-time-vector.jpg'
-import upload from '../../img/image-upload-vector.jpg'
+// import upload from '../../img/image-upload-vector.jpg'
 import portfolio from '../../img/portfolio-vector.jpg'
 import social from '../../img/group-chat-vector.jpg'
 import congrats from '../../img/onboarding-congrats-vector.png'
@@ -146,8 +146,8 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
     //modal onboarding step one
     const [ showStepOne, setShowStepOne ] = useState(false)
 
-    const handleCloseStepTwo = () => setShowStepOne(false);
-    const handleShowStepTwo = () => setShowStepOne(true);
+    // const handleCloseStepTwo = () => setShowStepOne(false);
+    // const handleShowStepTwo = () => setShowStepOne(true);
 
     //modal onboarding step two
     const [ showStepTwo, setShowStepTwo ] = useState(false)
@@ -162,10 +162,10 @@ const Profile = ({ profile: { profile, loading }, createProfile, getCurrentProfi
     const [ showStepFive, setShowStepFive ] = useState(false)
 
     //modal onboarding final step
-    const [ showFinalStep, setShowFinalStep ] = useState(false)
+    // const [ showFinalStep, setShowFinalStep ] = useState(false)
     
-    //for editing information 
-    const [ displaySocialInputs, toggleSocialInputs ] = useState(false)
+    // //for editing information 
+    // const [ displaySocialInputs, toggleSocialInputs ] = useState(false)
 
     //fetch data for profile of the user
     useEffect(()=>{
